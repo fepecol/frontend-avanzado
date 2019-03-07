@@ -4,11 +4,11 @@ import { AuthLayoutComponent } from './shared/components/layouts/auth-layout/aut
 import { AuthGuard } from './shared/services/auth/auth.guard'; */
 
 export const rootRouterConfig: Routes = [
-  /*{
+  {
     path: '',
     redirectTo: 'signin',
     pathMatch: 'full'
-  },*/
+  },
   {
     path: 'signin',
     loadChildren: './views/signin/signin.module#SigninModule',
