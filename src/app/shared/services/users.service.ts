@@ -11,26 +11,27 @@ export class UsersService {
     constructor(private http: HttpClient) {}
 
     //Gets all tasks
-    getTasks() {
+    getUsers() {
         return this.http
         .get<any>(this.base_url + this.users_endpoint);
     } //getTasks
 
     //Creates a task
-    createTask(task) {
+    createUser(user) {
         return this.http
-        .post<any>(this.base_url + this.users_endpoint, task);
+        .post<any>(this.base_url + this.users_endpoint, user);
     } //createTask
     
     //Updates a Task
-    updateTask(update) {
+    updateUser(update) {
         return this.http
         .put<any>(this.base_url + this.users_endpoint, update);
     } //updateTask
     
     //Deletes a Task
-    deleteTask(taskId) {
+    deleteUser(userId) {
         return this.http
-        .delete<any>('${this.base_url + this.users_endpoint}/${taskId}');
+        .delete<any>('${this.base_url + this.users_endpoint}/${userId}');
     } //deleteTask
+    
 }

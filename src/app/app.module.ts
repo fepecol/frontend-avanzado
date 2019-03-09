@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app-routing';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FakeBackendService } from './shared/services/fake-backend.service';
+import { InMemoryDataService } from './shared/inmemory-db/inmemory-db.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule  } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +17,7 @@ import { UsersService } from './shared/services/users.service';
     SharedModule,
     CoreModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
-    InMemoryWebApiModule.forRoot(FakeBackendService),
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
     BrowserModule,
     FormsModule,
     HttpClientModule,
