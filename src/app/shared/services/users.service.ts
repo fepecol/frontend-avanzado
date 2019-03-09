@@ -4,33 +4,33 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 
-export class AppService {
+export class UsersService {
     base_url: string = 'http://mybackend.com/api/';
-    tasks_endpoint = 'tasks';
+    users_endpoint = 'users';
 
     constructor(private http: HttpClient) {}
 
     //Gets all tasks
     getTasks() {
         return this.http
-        .get<any>(this.base_url + this.tasks_endpoint);
+        .get<any>(this.base_url + this.users_endpoint);
     } //getTasks
 
     //Creates a task
     createTask(task) {
         return this.http
-        .post<any>(this.base_url + this.tasks_endpoint, task);
+        .post<any>(this.base_url + this.users_endpoint, task);
     } //createTask
     
     //Updates a Task
     updateTask(update) {
         return this.http
-        .put<any>(this.base_url + this.tasks_endpoint, update);
+        .put<any>(this.base_url + this.users_endpoint, update);
     } //updateTask
     
     //Deletes a Task
     deleteTask(taskId) {
         return this.http
-        .delete<any>('${this.base_url + this.tasks_endpoint}/${taskId}');
+        .delete<any>('${this.base_url + this.users_endpoint}/${taskId}');
     } //deleteTask
 }

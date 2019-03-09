@@ -6,11 +6,11 @@ import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app-routing';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FakeBackendService } from './fake-backend.service';
-import { AppService } from './app.service';
+import { FakeBackendService } from './shared/services/fake-backend.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule  } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersService } from './shared/services/users.service';
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   declarations: [AppComponent],
-  providers: [AppService],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
