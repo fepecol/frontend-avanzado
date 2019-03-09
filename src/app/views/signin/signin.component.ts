@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UsersService } from '../../shared/services/users.service';
 
 @Component({
   selector: 'app-signin',
@@ -7,21 +8,21 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
+  
+  loginForm: FormGroup;
 
-  siginForm: FormGroup;
-  constructor() { 
+  constructor(private usersservice: UsersService) {   
   }
 
   ngOnInit() {
-    this.siginForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
+    this.loginForm = new FormGroup({
+      email: new FormControl('',[Validators.required, Validators.email]),
+      password: new FormControl('',[Validators.required])
     });
   }
 
-  onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.log(this.siginForm.value);
+  submit() {
+    console.log(this.loginForm.value);
   }
 
 }
