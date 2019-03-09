@@ -1,3 +1,69 @@
-<p>
-  profile works!
-</p>
+<div id="datos-personales">
+  <p>{{datos_personales.nombre}} {{datos_personales.apellidos}}</p>
+  <table>
+      <tr>
+        <th>Email</th>
+        <th>Fecha de nacimiento</th>
+        <th>Teléfono</th>
+        <th>NIF/NIE</th>
+        <th>Permisos de conducir</th>
+      </tr>
+      <tr>
+        <td>{{datos_personales.email}}</td>
+        <td>{{datos_personales.fechaNacimiento}}</td>
+        <td>{{datos_personales.telefono}}</td>
+        <td>{{datos_personales.dni}}</td>
+        <td>{{datos_personales.carnets}}</td>
+      </tr>
+    </table>
+    <p>Acerca de mi...</p>
+    <p>{{datos_personales.descripcion}}</p>
+    <p>Otras competencias</p>
+    <p>{{datos_personales.competencias}}</p>
+</div>
+<div id="formacion-academica">
+  <table>
+    <tr>
+      <th>Nivel</th>
+      <th>Título</th>
+      <th>Centro</th>
+      <th>Fecha</th>
+      <th>Certificado</th>
+    </tr>
+    <tr *ngFor="let item of formacion">
+      <td>{{item.nivel}}</td>
+      <td>{{item.titulo}}</td>
+      <td>{{item.centro}}</td>
+      <td>{{item.fecha}}</td>
+      <td>{{item.certificado}}</td>
+    </tr>
+  </table>
+</div>
+<div id="experiencia-laboral">
+    <table>
+      <tr>
+        <th>Empresa</th>
+        <th>Puesto</th>
+        <th>Fechas</th>
+      </tr>
+      <tr *ngFor="let item of experiencia">
+        <td>{{item.empresa}}</td>
+        <td>{{item.puesto}}</td>
+        <td>{{item.fechas}}</td>
+      </tr>
+    </table>
+</div>
+<div id="idiomas">
+    <table>
+      <tr>
+        <th>Nivel</th>
+        <th>Idioma</th>
+        <th>Fecha</th>
+      </tr>
+      <tr *ngFor="let item of idiomas">
+        <td>{{item.nivel}}</td>
+        <td>{{item.idioma}}</td>
+        <td>{{item.fecha}}</td>
+      </tr>
+    </table>  
+</div>

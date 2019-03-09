@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {User} from '../models/user';
 
 @Injectable()
 
@@ -13,7 +14,12 @@ export class UsersService {
     //Gets all tasks
     getUsers() {
         return this.http
-        .get<any>(this.base_url + this.users_endpoint);
+        .get<User[]>(this.base_url + this.users_endpoint);
+    } //getTasks
+    
+    getUser(userdId) {
+        return this.http
+        .get<User>(`${this.base_url + this.users_endpoint}/${userdId}`);
     } //getTasks
 
     //Creates a task
@@ -31,7 +37,7 @@ export class UsersService {
     //Deletes a Task
     deleteUser(userId) {
         return this.http
-        .delete<any>('${this.base_url + this.users_endpoint}/${userId}');
+        .delete<any>(`${this.base_url + this.users_endpoint}/${userId}`);
     } //deleteTask
     
 }

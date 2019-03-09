@@ -29,16 +29,18 @@ export class SigninComponent implements OnInit {
   getAcces(email, password){
     this.usersservice.getUsers().subscribe(users => {
       let access=false;
+      let userId=0;
       console.log(users);
       users.forEach(function(user) {
-        if(user.email==email && user.password==password){
+        if(user.datos_personales.email==email && user.datos_personales.password==password){
           access=true;
+          userId=user.id;
         }
       });
       if(access){
-        this._route.navigate(['/admin/profile']);
+        this._route.navigate(['/admin/profile'],{queryParams: {userId} });
       }else{
-        console.log('Error haciendo login');
+        alert('Error usuario o contraseña incorrectos');
       }
     });
   }
