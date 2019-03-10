@@ -66,7 +66,7 @@ export class ProfileComponent implements OnInit {
     this.edit_idiomas?this.edit_idiomas=false:this.edit_idiomas=true
   }
 
-  editSucces(ev){
+  onEdit(ev){
     console.log(ev);
     this.editDatos();
   }

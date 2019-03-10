@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 export class FormComponent implements OnInit {
   editForm: FormGroup;
   @Input() datos_personales;
-  @Input() edit_datospersonales;
+  @Output() edit = new EventEmitter<boolean>();
+
   constructor(private _route: Router) { }
 
   ngOnInit() {
@@ -33,9 +34,7 @@ export class FormComponent implements OnInit {
   }
 
   submit(){
-    this.edit_datospersonales=false;
-    let userId=1;
-    this._route.navigate(['/admin/profile'],{queryParams: {userId} });
+    this.edit.emit(true);
   }
 
 }

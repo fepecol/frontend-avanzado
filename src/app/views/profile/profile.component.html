@@ -95,7 +95,7 @@
 <ng-template #editBlock>
   <div *ngIf="edit_datospersonales">
     editar datos personales
-    <app-form [datos_personales]="datos_personales" [edit_datospersonales]="edit_datospersonales"></app-form>
+    <app-form [datos_personales]="datos_personales" (edit)=onEdit($event)></app-form>
   </div>
   <div *ngIf="edit_formacion">
       edit_formacion
