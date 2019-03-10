@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar'; */
 
 // COMPONENTS
+//import { FormComponent } from './form/form.component';
 
 // DIRECTIVES
 

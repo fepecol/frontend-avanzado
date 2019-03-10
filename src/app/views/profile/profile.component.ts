@@ -33,29 +33,12 @@ export class ProfileComponent implements OnInit {
     this.edit_formacion=false;
     this.edit_experiencia=false;
     this.edit_idiomas=false;
-    console.log(this.id);
     this.usersservice.getUser(this.id).subscribe(user => {
       console.log(user);
       this.datos_personales=user.datos_personales;
       this.formacion=user.formacion_academica;
       this.experiencia=user.experiencia_laboral;
       this.idiomas=user.idiomas;
-      this.editForm = new FormGroup({
-        nombre: new FormControl(this.datos_personales.nombre,[Validators.required]),
-        apellidos: new FormControl(this.datos_personales.apellidos,[Validators.required]),
-        fechaNacimiento: new FormControl(this.datos_personales.fechaNacimiento,[Validators.required]),
-        telefono: new FormControl(this.datos_personales.telefono,[Validators.required]),
-        telefono2: new FormControl(this.datos_personales.telefono2),
-        dni: new FormControl(this.datos_personales.dni,[Validators.required]),
-        tipoDocumento: new FormControl(this.datos_personales.tipoDocumento,[Validators.required]),
-        direccion: new FormControl(this.datos_personales.direccion,[Validators.required]),
-        provincia: new FormControl(this.datos_personales.provincia,[Validators.required]),
-        municipio: new FormControl(this.datos_personales.municipio,[Validators.required]),
-        descripcion: new FormControl(this.datos_personales.descripcion,[Validators.required]),
-        competencias: new FormControl(this.datos_personales.competencias,[Validators.required]),
-        carnets: new FormControl(this.datos_personales.carnets,[Validators.required]),
-      });
-      console.log(this.editForm.controls);
     });
   }
 
@@ -83,4 +66,8 @@ export class ProfileComponent implements OnInit {
     this.edit_idiomas?this.edit_idiomas=false:this.edit_idiomas=true
   }
 
+  editSucces(ev){
+    console.log(ev);
+    this.editDatos();
+  }
 }
