@@ -1,69 +1,160 @@
-<div id="datos-personales">
-  <p>{{datos_personales.nombre}} {{datos_personales.apellidos}}</p>
-  <table>
-      <tr>
-        <th>Email</th>
-        <th>Fecha de nacimiento</th>
-        <th>Teléfono</th>
-        <th>NIF/NIE</th>
-        <th>Permisos de conducir</th>
-      </tr>
-      <tr>
-        <td>{{datos_personales.email}}</td>
-        <td>{{datos_personales.fechaNacimiento}}</td>
-        <td>{{datos_personales.telefono}}</td>
-        <td>{{datos_personales.dni}}</td>
-        <td>{{datos_personales.carnets}}</td>
-      </tr>
-    </table>
-    <p>Acerca de mi...</p>
-    <p>{{datos_personales.descripcion}}</p>
-    <p>Otras competencias</p>
-    <p>{{datos_personales.competencias}}</p>
-</div>
-<div id="formacion-academica">
-  <table>
-    <tr>
-      <th>Nivel</th>
-      <th>Título</th>
-      <th>Centro</th>
-      <th>Fecha</th>
-      <th>Certificado</th>
-    </tr>
-    <tr *ngFor="let item of formacion">
-      <td>{{item.nivel}}</td>
-      <td>{{item.titulo}}</td>
-      <td>{{item.centro}}</td>
-      <td>{{item.fecha}}</td>
-      <td>{{item.certificado}}</td>
-    </tr>
-  </table>
-</div>
-<div id="experiencia-laboral">
-    <table>
-      <tr>
-        <th>Empresa</th>
-        <th>Puesto</th>
-        <th>Fechas</th>
-      </tr>
-      <tr *ngFor="let item of experiencia">
-        <td>{{item.empresa}}</td>
-        <td>{{item.puesto}}</td>
-        <td>{{item.fechas}}</td>
-      </tr>
-    </table>
-</div>
-<div id="idiomas">
-    <table>
+<div *ngIf="!edit else editBlock">
+  <div id="datos-personales">
+    <div class="row">
+      <div class="col-2">
+        <p>{{datos_personales.nombre}} {{datos_personales.apellidos}}</p>
+      </div>
+      <div class="col-4">
+        <table>
+          <tr>
+            <td>Email</td>
+            <td>{{datos_personales.email}}</td>
+          </tr>
+          <tr>
+            <td>Fecha de nacimiento</td>
+            <td>{{datos_personales.fechaNacimiento}}</td>
+          </tr>
+          <tr>
+            <td>Teléfono</td>
+            <td>{{datos_personales.telefono}}</td>
+          </tr>
+          <tr>
+            <td>NIF/NIE</td>
+            <td>{{datos_personales.dni}}</td>
+          </tr>
+          <tr>
+            <td>Permisos de conducir</td>
+            <td>{{datos_personales.carnets}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-3">
+        <p>Acerca de mi...</p>
+        <p>{{datos_personales.descripcion}}</p>
+      </div>
+      <div class="col-3">
+        <p>Otras competencias</p>
+        <p>{{datos_personales.competencias}}</p>
+      </div>
+    </div>
+    <button (click)="editDatos()" class="btn btn-secondary">Editar</button>
+  </div>
+  <div id="formacion-academica">
+    <h1>Formación academica</h1>
+    <table class="table table-striped">
       <tr>
         <th>Nivel</th>
-        <th>Idioma</th>
+        <th>Título</th>
+        <th>Centro</th>
         <th>Fecha</th>
+        <th>Certificado</th>
       </tr>
-      <tr *ngFor="let item of idiomas">
+      <tr *ngFor="let item of formacion">
         <td>{{item.nivel}}</td>
-        <td>{{item.idioma}}</td>
+        <td>{{item.titulo}}</td>
+        <td>{{item.centro}}</td>
         <td>{{item.fecha}}</td>
+        <td>{{item.certificado}}</td>
       </tr>
-    </table>  
+    </table>
+    <button (click)="editFormacion()" class="btn btn-secondary">Editar</button>
+  </div>
+  <div id="experiencia-laboral">
+    <h1>Experiencia laboral</h1>
+      <table class="table table-striped">
+        <tr>
+          <th>Empresa</th>
+          <th>Puesto</th>
+          <th>Fechas</th>
+        </tr>
+        <tr *ngFor="let item of experiencia">
+          <td>{{item.empresa}}</td>
+          <td>{{item.puesto}}</td>
+          <td>{{item.fechas}}</td>
+        </tr>
+      </table>
+      <button (click)="editExperiencia()" class="btn btn-secondary">Editar</button>
+  </div>
+  <div id="idiomas">
+    <h1>Idiomas</h1>
+      <table class="table table-striped">
+        <tr>
+          <th>Nivel</th>
+          <th>Idioma</th>
+          <th>Fecha</th>
+        </tr>
+        <tr *ngFor="let item of idiomas">
+          <td>{{item.nivel}}</td>
+          <td>{{item.idioma}}</td>
+          <td>{{item.fecha}}</td>
+        </tr>
+      </table>  
+      <button (click)="editIdiomas()" class="btn btn-secondary">Editar</button>
+  </div>
 </div>
+<ng-template #editBlock>
+  <div *ngIf="edit_datospersonales">
+    editar datos personales
+    <form [formGroup]="editForm" (ngSubmit)="editDatos()">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" name="nombre" id="nombre" formControlName="nombre">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" name="apellidos" id="apellidos" formControlName="apellidos">
+        </div>
+        <div class="form-group">
+          <label for="fechaNacimiento">FNacimiento</label>
+          <input type="text" name="fechaNacimiento" id="fechaNacimiento" formControlName="fechaNacimiento">
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" name="telefono" id="telefono" formControlName="telefono">
+          <label for="telefono2">Teléfono 2</label>
+          <input type="text" name="telefono2" id="telefono2" formControlName="telefono2">
+        </div>
+        <div class="form-group">
+          <label for="tipoDocumento">DNI/NIE</label>
+          <input type="text" name="tipoDocumento" id="tipoDocumento" formControlName="tipoDocumento">
+          <label for="dni">Número</label>
+          <input type="text" name="dni" id="dni" formControlName="dni">
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <input type="text" name="direccion" id="direccion" formControlName="direccion">
+        </div>
+        <div class="form-group">
+          <label for="provincia">Provincia</label>
+          <input type="text" name="provincia" id="provincia" formControlName="provincia">
+          <label for="municipio">Municipio</label>
+          <input type="text" name="municipio" id="municipio" formControlName="municipio">
+        </div>
+        <div class="form-group">
+          <label for="carnets">Permisos de conducir</label>
+          <input type="text" name="carnets" id="carnets" formControlName="carnets">
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Sobre mí</label>
+          <input type="text" name="descripcion" id="descripcion" formControlName="descripcion">
+        </div>
+        <div class="form-group">
+          <label for="competencias">Otras competencias</label>
+          <input type="text" name="competencias" id="competencias" formControlName="competencias">
+        </div>
+      
+        <button type="submit" [disabled]="!loginForm.valid" class="btn btn-secondary">Guardar</button>
+      </form>
+  </div>
+  <div *ngIf="edit_formacion">
+      edit_formacion
+      <button (click)="editFormacion()" class="btn btn-secondary">Guardar</button>
+  </div>
+  <div *ngIf="edit_experiencia">
+      edit_experiencia
+      <button (click)="editExperiencia()" class="btn btn-secondary">Guardar</button>
+  </div>
+  <div *ngIf="edit_idiomas">
+      edit_idiomas
+      <button (click)="editIdiomas()" class="btn btn-secondary">Guardar</button>
+  </div>
+  
+</ng-template>

@@ -68,7 +68,7 @@ export class InMemoryDataService implements InMemoryDbService {
           telefono: '666222111',
           dni: '12344321C',
           descripcion: 'Me gusta trabajar en equipo',
-          competencias: '',
+          competencias: 'Se me da bien manejar el ordenador',
           carnets: 'Tengo el carne de coche',
           direccion: 'Calle, numero, piso, puerta',
           password: '4321'
