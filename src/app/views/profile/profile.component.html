@@ -1,115 +1,178 @@
-<div *ngIf="!edit else editBlock">
-  <div id="datos-personales">
-    <div class="row">
-      <div class="col-2">
-        <p>{{datos_personales.nombre}} {{datos_personales.apellidos}}</p>
+<div *ngIf="profileUser">
+ <div *ngIf="!edit else editBlock">
+    <div id="datos-personales">
+      <div class="row">
+        <div class="col-2">
+          <p>{{datos_personales.nombre}} {{datos_personales.apellidos}}</p>
+        </div>
+        <div class="col-4">
+          <table>
+            <tr>
+              <td>Email</td>
+              <td>{{datos_personales.email}}</td>
+            </tr>
+            <tr>
+              <td>Fecha de nacimiento</td>
+              <td>{{datos_personales.fechaNacimiento}}</td>
+            </tr>
+            <tr>
+              <td>Teléfono</td>
+              <td>{{datos_personales.telefono}}</td>
+            </tr>
+            <tr>
+              <td>NIF/NIE</td>
+              <td>{{datos_personales.dni}}</td>
+            </tr>
+            <tr>
+              <td>Permisos de conducir</td>
+              <td>{{datos_personales.carnets}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-3">
+          <p>Acerca de mi...</p>
+          <p>{{datos_personales.descripcion}}</p>
+        </div>
+        <div class="col-3">
+          <p>Otras competencias</p>
+          <p>{{datos_personales.competencias}}</p>
+        </div>
       </div>
-      <div class="col-4">
-        <table>
-          <tr>
-            <td>Email</td>
-            <td>{{datos_personales.email}}</td>
-          </tr>
-          <tr>
-            <td>Fecha de nacimiento</td>
-            <td>{{datos_personales.fechaNacimiento}}</td>
-          </tr>
-          <tr>
-            <td>Teléfono</td>
-            <td>{{datos_personales.telefono}}</td>
-          </tr>
-          <tr>
-            <td>NIF/NIE</td>
-            <td>{{datos_personales.dni}}</td>
-          </tr>
-          <tr>
-            <td>Permisos de conducir</td>
-            <td>{{datos_personales.carnets}}</td>
-          </tr>
-        </table>
-      </div>
-      <div class="col-3">
-        <p>Acerca de mi...</p>
-        <p>{{datos_personales.descripcion}}</p>
-      </div>
-      <div class="col-3">
-        <p>Otras competencias</p>
-        <p>{{datos_personales.competencias}}</p>
-      </div>
+      <button (click)="editDatos()" class="btn btn-secondary editar">Editar</button>
     </div>
-    <button (click)="editDatos()" class="btn btn-secondary editar">Editar</button>
-  </div>
-  <div id="formacion-academica">
-    <h1>Formación academica</h1>
-    <table class="table table-striped">
-      <tr>
-        <th>Nivel</th>
-        <th>Título</th>
-        <th>Centro</th>
-        <th>Fecha</th>
-        <th>Certificado</th>
-        <th>Acciones</th>
-      </tr>
-      <tr *ngFor="let item of formaciones">
-        <td>{{item.nivel}}</td>
-        <td>{{item.titulo}}</td>
-        <td>{{item.centro}}</td>
-        <td>{{item.fecha}}</td>
-        <td>{{item.certificado}}</td>
-        <td><button (click)="editFormacion(item)" class="btn btn-secondary">Editar</button><button (click)="deleteFormacion()" class="btn btn-secondary">Borrar</button></td>
-      </tr>
-    </table>
-    <button (click)="newFormacion()" class="btn btn-secondary editar">Nueva</button>
-  </div>
-  <div id="experiencia-laboral">
-    <h1>Experiencia laboral</h1>
-      <table class="table table-striped">
-        <tr>
-          <th>Empresa</th>
-          <th>Puesto</th>
-          <th>Fechas</th>
-          <th>Acciones</th>
-        </tr>
-        <tr *ngFor="let item of experiencias">
-          <td>{{item.empresa}}</td>
-          <td>{{item.puesto}}</td>
-          <td>{{item.fechaInicio}}-{{item.fechaFin}}</td>
-          <td><button (click)="editExperiencia(item)" class="btn btn-secondary">Editar</button><button (click)="deleteExperiencia(item)" class="btn btn-secondary">Borrar</button></td>
-        </tr>
-      </table>
-      <button (click)="newExperiencia()" class="btn btn-secondary editar">Nueva</button>
-  </div>
-  <div id="idiomas">
-    <h1>Idiomas</h1>
+    <div id="formacion-academica">
+      <h1>Formación academica</h1>
       <table class="table table-striped">
         <tr>
           <th>Nivel</th>
-          <th>Idioma</th>
+          <th>Título</th>
+          <th>Centro</th>
           <th>Fecha</th>
+          <th>Certificado</th>
           <th>Acciones</th>
         </tr>
-        <tr *ngFor="let item of idiomas">
+        <tr *ngFor="let item of formaciones">
           <td>{{item.nivel}}</td>
-          <td>{{item.idioma}}</td>
+          <td>{{item.titulo}}</td>
+          <td>{{item.centro}}</td>
           <td>{{item.fecha}}</td>
-          <td><button (click)="editIdiomas(item)" class="btn btn-secondary">Editar</button><button (click)="deleteIdiomas(item)" class="btn btn-secondary">Borrar</button></td>
+          <td>{{item.certificado}}</td>
+          <td><button (click)="editFormacion(item)" class="btn btn-secondary">Editar</button><button (click)="deleteFormacion()" class="btn btn-secondary">Borrar</button></td>
         </tr>
-      </table>  
-      <button (click)="newIdiomas()" class="btn btn-secondary editar">Editar</button>
+      </table>
+      <button (click)="newFormacion()" class="btn btn-secondary editar">Nueva</button>
+    </div>
+    <div id="experiencia-laboral">
+      <h1>Experiencia laboral</h1>
+        <table class="table table-striped">
+          <tr>
+            <th>Empresa</th>
+            <th>Puesto</th>
+            <th>Fechas</th>
+            <th>Acciones</th>
+          </tr>
+          <tr *ngFor="let item of experiencias">
+            <td>{{item.empresa}}</td>
+            <td>{{item.puesto}}</td>
+            <td>{{item.fechaInicio}}-{{item.fechaFin}}</td>
+            <td><button (click)="editExperiencia(item)" class="btn btn-secondary">Editar</button><button (click)="deleteExperiencia(item)" class="btn btn-secondary">Borrar</button></td>
+          </tr>
+        </table>
+        <button (click)="newExperiencia()" class="btn btn-secondary editar">Nueva</button>
+    </div>
+    <div id="idiomas">
+      <h1>Idiomas</h1>
+        <table class="table table-striped">
+          <tr>
+            <th>Nivel</th>
+            <th>Idioma</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+          <tr *ngFor="let item of idiomas">
+            <td>{{item.nivel}}</td>
+            <td>{{item.idioma}}</td>
+            <td>{{item.fecha}}</td>
+            <td><button (click)="editIdiomas(item)" class="btn btn-secondary">Editar</button><button (click)="deleteIdiomas(item)" class="btn btn-secondary">Borrar</button></td>
+          </tr>
+        </table>  
+        <button (click)="newIdiomas()" class="btn btn-secondary editar">Editar</button>
+    </div>
   </div>
+  <ng-template #editBlock>
+    <div *ngIf="edit_datospersonales">
+      <app-form-personal [datos_personales]="datos_personales" [userId]="id" (edit)=onEdit($event)></app-form-personal>
+    </div>
+    <div *ngIf="edit_formacion">
+        <app-form-formacion [formacion]="formacion" [userId]="id" (edit)=onEdit($event)></app-form-formacion>
+    </div>
+    <div *ngIf="edit_experiencia">
+        <app-form-experiencia [experiencia]="experiencia" [userId]="id" (edit)=onEdit($event)></app-form-experiencia>
+    </div>
+    <div *ngIf="edit_idiomas">
+      <app-form-idiomas [idioma]="idioma" [userId]="id" (edit)=onEdit($event)></app-form-idiomas>
+    </div>
+  </ng-template>
 </div>
-<ng-template #editBlock>
-  <div *ngIf="edit_datospersonales">
-    <app-form-personal [datos_personales]="datos_personales" [userId]="id" (edit)=onEdit($event)></app-form-personal>
+<div *ngIf="profileEmpresa">
+  empresa profile
+  <div *ngIf="!edit_empresa else editEmpresaBlock" id="datos-empresa">
+    <div class="row">
+      <div class="col-6">
+        <h1>Datos de la empresa</h1>
+        <table class="table table-striped">
+          <tr>
+            <td>Nombre</td>
+            <td>{{empresa.nombre}}</td>
+          </tr>
+          <tr>
+            <td>Razón Social</td>
+            <td>{{empresa.razonSocial}}</td>
+          </tr>
+          <tr>
+            <td>CIF</td>
+            <td>{{empresa.cif}}</td>
+          </tr>
+          <tr>
+            <td>Dirección</td>
+            <td>{{empresa.direccion}}</td>
+          </tr>
+          <tr>
+            <td>Provincia</td>
+            <td>{{empresa.provincia}}</td>
+          </tr>
+          <tr>
+            <td>Municipio</td>
+            <td>{{empresa.municipio}}</td>
+          </tr>
+          <tr>
+            <td>URL</td>
+            <td>{{empresa.url}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-6">
+        <h1>Persona de contacto</h1>
+        <table class="table table-striped">
+          <tr>
+            <td>Persona de contacto – Nombre y Apellidos</td>
+            <td>{{empresa.contacto.nombre}}</td>
+          </tr>
+          <tr>
+            <td>Persona de contacto – Teléfono</td>
+            <td>{{empresa.contacto.telefono}}</td>
+          </tr>
+          <tr>
+            <td>Persona de contacto – Correo electrónico</td>
+            <td>{{empresa.contacto.email}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <button (click)="editEmpresa()" class="btn btn-secondary editar">Editar</button>
   </div>
-  <div *ngIf="edit_formacion">
-      <app-form-formacion [formacion]="formacion" [userId]="id" (edit)=onEdit($event)></app-form-formacion>
-  </div>
-  <div *ngIf="edit_experiencia">
-      <app-form-experiencia [experiencia]="experiencia" [userId]="id" (edit)=onEdit($event)></app-form-experiencia>
-  </div>
-  <div *ngIf="edit_idiomas">
-    <app-form-idiomas [idioma]="idioma" [userId]="id" (edit)=onEdit($event)></app-form-idiomas>
-  </div>
-  
-</ng-template>
+  <ng-template #editEmpresaBlock>
+      edit
+      <app-form-empresa [empresa]="empresa" [empresaId]="empresaId" (edit)=onEdit($event)></app-form-empresa>
+  </ng-template>
+</div>

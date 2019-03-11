@@ -7,15 +7,15 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 1,
         datos_personales:{
-          nombre: 'Felix',
-          apellidos: 'Perez Collado',
-          email: 'felix_9669@hotmail.com',
+          nombre: 'Antonio',
+          apellidos: 'Perez Garcia',
+          email: 'antonio@gmail.com',
           fechaNacimiento: '6/11/1992',
           telefono: '666333999',
           dni: '12345678D',
           descripcion: 'Soy una person responsble, trabajadora y con muchas ganas de apender',
           competencias: '',
-          carnets: 'Tengo el carne de coche y moto',
+          carnets: 'B, A1, A2',
           direccion: 'Calle, numero, piso, puerta',
           password: '1234'
         },
@@ -65,15 +65,15 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 2,
         datos_personales:{
-          nombre: 'Sandra',
-          apellidos: 'Tortajada Trullenque',
+          nombre: 'Marta',
+          apellidos: 'Resines Castell',
           email: 'email@uoc.com',
           fechaNacimiento: '3/04/1994',
           telefono: '666222111',
           dni: '12344321C',
           descripcion: 'Me gusta trabajar en equipo',
           competencias: 'Se me da bien manejar el ordenador',
-          carnets: 'Tengo el carne de coche',
+          carnets: 'B, A1',
           direccion: 'Calle, numero, piso, puerta',
           password: '4321'
         },
@@ -117,8 +117,42 @@ export class InMemoryDataService implements InMemoryDbService {
         ]
       }
      ];
+
+     let empresas=[
+        {
+          id: '1',
+          nombre: 'Movistar',
+          razonSocial: 'Telecomunicaciones',
+          cif: '1234AAA',
+          direccion: 'calle, numero, puerta',
+          municipio: 'Barcelona',
+          provincia: 'Barcelona',
+          url: 'www.url.com',
+          contacto:{
+            nombre: 'Florentino Perez',
+            telefono: '600600600',
+            email: 'florentino@movistar.com',
+          }
+        },
+        {
+          id: '2',
+          nombre: 'FCC',
+          razonSocial: 'Servicios y construcción',
+          cif: '4321BBB',
+          direccion: 'calle2, numero2, puerta2',
+          municipio: 'Madrid',
+          provincia: 'Madrid',
+          url: 'www.fcc.com',
+          contacto:{
+            nombre: 'Bill Gates',
+            telefono: '611611611',
+            email: 'bill@fcc.com',
+        }
+      }
+     ];
      return {
-      users: users
+      users: users,
+      empresas: empresas
      };
   }
 }

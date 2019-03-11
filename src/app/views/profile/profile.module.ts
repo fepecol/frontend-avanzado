@@ -9,6 +9,7 @@ import { FormPersonalComponent } from '../../shared/forms/form-personal/form-per
 import { FormExperienciaComponent } from '../../shared/forms/form-experiencia/form-experiencia.component';
 import { FormFormacionComponent } from '../../shared/forms/form-formacion/form-formacion.component';
 import { FormIdiomasComponent } from '../../shared/forms/form-idiomas/form-idiomas.component';
+import { FormEmpresaComponent } from '../../shared/forms/form-empresa/form-empresa.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormIdiomasComponent } from '../../shared/forms/form-idiomas/form-idiom
     FormPersonalComponent, 
     FormExperienciaComponent, 
     FormFormacionComponent,
-    FormIdiomasComponent
+    FormIdiomasComponent,
+    FormEmpresaComponent
   ],
   imports: [
     CommonModule,

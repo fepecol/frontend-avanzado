@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsersService } from '../../shared/services/users.service';
+import { EmpresasService } from '../../shared/services/empresas.service';
 import { User } from '../../shared/models/user';
+import { Empresa } from '../../shared/models/empresa';
 
 
 @Component({
@@ -11,7 +13,10 @@ import { User } from '../../shared/models/user';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  id: number;
+  profileUser: boolean=false;
+  profileEmpresa: boolean=false;
+  userId: number;
+  empresaId: number;
   datos_personales: User["datos_personales"];
   formaciones: User["formacion_academica"];
   formacion: object;
@@ -19,28 +24,38 @@ export class ProfileComponent implements OnInit {
   experiencia: object;
   idiomas: User["idiomas"];
   idioma: object;
-  edit: boolean;
-  edit_datospersonales: boolean;
-  edit_formacion: boolean;
-  edit_experiencia: boolean;
-  edit_idiomas: boolean;
+  empresa: Empresa;
+  edit: boolean=false;
+  edit_datospersonales: boolean=false;
+  edit_formacion: boolean=false;
+  edit_experiencia: boolean=false;
+  edit_idiomas: boolean=false;
+  edit_empresa: boolean=false;
   editForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private usersservice: UsersService) { }
+  constructor(private route: ActivatedRoute, 
+    private usersservice: UsersService, 
+    private empresasservice: EmpresasService) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => this.id = params.userId);
-    this.edit=false;
-    this.edit_datospersonales=false;
-    this.edit_formacion=false;
-    this.edit_experiencia=false;
-    this.edit_idiomas=false;
-    this.usersservice.getUser(this.id).subscribe(user => {
-      this.datos_personales=user.datos_personales;
-      this.formaciones=user.formacion_academica;
-      this.experiencias=user.experiencia_laboral;
-      this.idiomas=user.idiomas;
-    });
+    this.route.queryParams.subscribe(params => this.userId = params.userId);
+    this.route.queryParams.subscribe(params => this.empresaId = params.empresaId);
+    if(this.userId!=undefined){
+      this.profileUser=true;
+      this.usersservice.getUser(this.userId).subscribe(user => {
+        this.datos_personales=user.datos_personales;
+        this.formaciones=user.formacion_academica;
+        this.experiencias=user.experiencia_laboral;
+        this.idiomas=user.idiomas;
+      });
+    }
+    if(this.empresaId!=undefined){
+      this.profileEmpresa=true;
+      this.empresasservice.getEmpresa(this.empresaId).subscribe(empresa => {
+        console.log(empresa);
+        this.empresa=empresa;
+      });
+    }
   }
 
   editar(){
@@ -99,6 +114,11 @@ export class ProfileComponent implements OnInit {
     console.log('Eliminar idioma', item);
   }
 
+  editEmpresa(){
+    console.log('editar empresa');
+    this.edit_empresa?this.edit_empresa=false:this.edit_empresa=true
+  }
+
   onEdit(ev){
     console.log(ev);
     this.editar();
@@ -106,5 +126,6 @@ export class ProfileComponent implements OnInit {
     this.edit_formacion=false;
     this.edit_experiencia=false;
     this.edit_idiomas=false;
+    this.edit_empresa=false;
   }
 }

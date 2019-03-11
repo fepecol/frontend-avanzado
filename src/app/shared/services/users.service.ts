@@ -17,9 +17,9 @@ export class UsersService {
         .get<User[]>(this.base_url + this.users_endpoint);
     } //getTasks
     
-    getUser(userdId) {
+    getUser(userId) {
         return this.http
-        .get<User>(`${this.base_url + this.users_endpoint}/${userdId}`);
+        .get<User>(`${this.base_url + this.users_endpoint}/${userId}`);
     } //getTasks
 
     //Creates a task

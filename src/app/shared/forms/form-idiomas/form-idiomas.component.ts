@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {NgSelectModule, NgOption} from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-form-idiomas',
