@@ -2,16 +2,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  selector: 'app-form-personal',
+  templateUrl: './form-personal.component.html',
+  styleUrls: ['./form-personal.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormPersonalComponent implements OnInit {
   editForm: FormGroup;
   @Input() userId;
   @Input() datos_personales;
   @Output() edit = new EventEmitter<boolean>();
-
   constructor() { }
 
   ngOnInit() {
@@ -19,7 +18,7 @@ export class FormComponent implements OnInit {
     console.log(this.userId);
     this.editForm = new FormGroup({
       nombre: new FormControl(this.datos_personales.nombre,[Validators.required, Validators.minLength(3),Validators.maxLength(55),Validators.pattern('^[a-zA-Z]*')]),
-      apellidos: new FormControl(this.datos_personales.apellidos,[Validators.required,Validators.minLength(3),Validators.maxLength(55),Validators.pattern('^[a-zA-Z]*')]),
+      apellidos: new FormControl(this.datos_personales.apellidos,[Validators.required,Validators.minLength(3),Validators.maxLength(55)/*,Validators.pattern('^[a-zA-Z]*')*/]),
       fechaNacimiento: new FormControl(this.datos_personales.fechaNacimiento),
       telefono: new FormControl(this.datos_personales.telefono),
       telefono2: new FormControl(this.datos_personales.telefono2),

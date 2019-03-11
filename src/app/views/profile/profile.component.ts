@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   experiencias: User["experiencia_laboral"];
   experiencia: object;
   idiomas: User["idiomas"];
+  idioma: object;
   edit: boolean;
   edit_datospersonales: boolean;
   edit_formacion: boolean;
@@ -82,9 +83,20 @@ export class ProfileComponent implements OnInit {
     console.log('Eliminar experiencia', item);
   }
 
-  editIdiomas(){
+  newIdiomas(){
+    this.idioma={};
     this.editar();
     this.edit_idiomas?this.edit_idiomas=false:this.edit_idiomas=true
+  }
+  
+  editIdiomas(item){
+    this.idioma=item;
+    this.editar();
+    this.edit_idiomas?this.edit_idiomas=false:this.edit_idiomas=true
+  }
+
+  deleteIdiomas(item){
+    console.log('Eliminar idioma', item);
   }
 
   onEdit(ev){

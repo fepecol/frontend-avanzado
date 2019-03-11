@@ -37,7 +37,7 @@
         <p>{{datos_personales.competencias}}</p>
       </div>
     </div>
-    <button (click)="editDatos()" class="btn btn-secondary">Editar</button>
+    <button (click)="editDatos()" class="btn btn-secondary editar">Editar</button>
   </div>
   <div id="formacion-academica">
     <h1>Formación academica</h1>
@@ -56,10 +56,10 @@
         <td>{{item.centro}}</td>
         <td>{{item.fecha}}</td>
         <td>{{item.certificado}}</td>
-        <td><button (click)="deleteFormacion()" class="btn btn-secondary">Borrar</button><button (click)="editFormacion(item)" class="btn btn-secondary">Editar</button></td>
+        <td><button (click)="editFormacion(item)" class="btn btn-secondary">Editar</button><button (click)="deleteFormacion()" class="btn btn-secondary">Borrar</button></td>
       </tr>
     </table>
-    <button (click)="newFormacion()" class="btn btn-secondary">Nueva</button>
+    <button (click)="newFormacion()" class="btn btn-secondary editar">Nueva</button>
   </div>
   <div id="experiencia-laboral">
     <h1>Experiencia laboral</h1>
@@ -74,10 +74,10 @@
           <td>{{item.empresa}}</td>
           <td>{{item.puesto}}</td>
           <td>{{item.fechaInicio}}-{{item.fechaFin}}</td>
-          <td><button (click)="deleteExperiencia(item)" class="btn btn-secondary">Borrar</button><button (click)="editExperiencia(item)" class="btn btn-secondary">Editar</button></td>
+          <td><button (click)="editExperiencia(item)" class="btn btn-secondary">Editar</button><button (click)="deleteExperiencia(item)" class="btn btn-secondary">Borrar</button></td>
         </tr>
       </table>
-      <button (click)="newExperiencia()" class="btn btn-secondary">Nueva</button>
+      <button (click)="newExperiencia()" class="btn btn-secondary editar">Nueva</button>
   </div>
   <div id="idiomas">
     <h1>Idiomas</h1>
@@ -86,30 +86,30 @@
           <th>Nivel</th>
           <th>Idioma</th>
           <th>Fecha</th>
+          <th>Acciones</th>
         </tr>
         <tr *ngFor="let item of idiomas">
           <td>{{item.nivel}}</td>
           <td>{{item.idioma}}</td>
           <td>{{item.fecha}}</td>
+          <td><button (click)="editIdiomas(item)" class="btn btn-secondary">Editar</button><button (click)="deleteIdiomas(item)" class="btn btn-secondary">Borrar</button></td>
         </tr>
       </table>  
-      <button (click)="editIdiomas()" class="btn btn-secondary">Editar</button>
+      <button (click)="newIdiomas()" class="btn btn-secondary editar">Editar</button>
   </div>
 </div>
 <ng-template #editBlock>
   <div *ngIf="edit_datospersonales">
-    <app-form [datos_personales]="datos_personales" [userId]="id" (edit)=onEdit($event)></app-form>
+    <app-form-personal [datos_personales]="datos_personales" [userId]="id" (edit)=onEdit($event)></app-form-personal>
   </div>
   <div *ngIf="edit_formacion">
       <app-form-formacion [formacion]="formacion" [userId]="id" (edit)=onEdit($event)></app-form-formacion>
-      <button (click)="editFormacion()" class="btn btn-secondary">Guardar</button>
   </div>
   <div *ngIf="edit_experiencia">
       <app-form-experiencia [experiencia]="experiencia" [userId]="id" (edit)=onEdit($event)></app-form-experiencia>
   </div>
   <div *ngIf="edit_idiomas">
-      edit_idiomas
-      <button (click)="editIdiomas()" class="btn btn-secondary">Guardar</button>
+    <app-form-idiomas [idioma]="idioma" [userId]="id" (edit)=onEdit($event)></app-form-idiomas>
   </div>
   
 </ng-template>

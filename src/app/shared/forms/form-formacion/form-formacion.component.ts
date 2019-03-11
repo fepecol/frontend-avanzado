@@ -8,23 +8,24 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FormFormacionComponent implements OnInit {
   formacionForm: FormGroup;
+  universitario: boolean;
+  ciclo: boolean;
+  otro: boolean;
+
   @Input() userId;
   @Input() formacion;
   @Output() edit = new EventEmitter<boolean>();
 
-  cities = [
-    {id: 1, name: 'Vilnius'},
-    {id: 2, name: 'Kaunas'},
-    {id: 3, name: 'Pavilnys', disabled: true},
-    {id: 4, name: 'Pabradė'},
-    {id: 5, name: 'Klaipėda'}
-];
-
   constructor() { }
 
-  ngOnInit() {console.log(this.formacion);
+  ngOnInit() {
+    this.ciclo=false;
+    this.otro=false;
+    this.universitario=true;
+    console.log(this.formacion);
     this.formacionForm = new FormGroup({
       titulo: new FormControl(this.formacion.titulo,[Validators.required, Validators.minLength(3),Validators.maxLength(255),/*Validators.pattern('^[a-zA-Z]*')*/]),
+      tipoTitulo: new FormControl(this.formacion.tipoTitulo),
       centroUniversitario: new FormControl(this.formacion.centroUniversitario),
       fechaUniversidad: new FormControl(this.formacion.fecha),
       bilingue: new FormControl(this.formacion.bilingue),
@@ -43,7 +44,17 @@ export class FormFormacionComponent implements OnInit {
     this.edit.emit(true);
   }
 
-  universidad(){
-    console.log('selected');
+  tipoTitulo(select){
+    console.log(select);
+    if(select=='uni'){
+      this.universitario=true;
+      this.ciclo=false;
+      this.otro=false;
+    }
+    if(select=='ciclo'){
+      this.universitario=false;
+      this.ciclo=true;
+      this.otro=false;
+    }
   }
 }
