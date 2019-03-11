@@ -150,9 +150,36 @@ export class InMemoryDataService implements InMemoryDbService {
         }
       }
      ];
+
+     let offers=[
+        {
+          id: '1',
+          puesto: 'Programador junior',
+          descripcion: '',
+          empresa: '',
+          familia: '',
+          fecha: '',
+          provincia: '',
+          municipio: '',
+          titulos: '',
+        },
+        {
+          id: '2',
+          puesto: 'Asistente de marqueting',
+          descripcion: '',
+          empresa: '',
+          familia: '',
+          fecha: '',
+          provincia: '',
+          municipio: '',
+          titulos: '',
+        }
+    ];
+
      return {
       users: users,
-      empresas: empresas
+      empresas: empresas,
+      offers: offers
      };
   }
 }

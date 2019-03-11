@@ -11,33 +11,33 @@ export class UsersService {
 
     constructor(private http: HttpClient) {}
 
-    //Gets all tasks
+    //Gets all users
     getUsers() {
         return this.http
         .get<User[]>(this.base_url + this.users_endpoint);
-    } //getTasks
+    } //getusers
     
     getUser(userId) {
         return this.http
         .get<User>(`${this.base_url + this.users_endpoint}/${userId}`);
-    } //getTasks
+    } //getusers
 
     //Creates a task
     createUser(user) {
         return this.http
         .post<any>(this.base_url + this.users_endpoint, user);
-    } //createTask
+    } //createusers
     
-    //Updates a Task
+    //Updates a users
     updateUser(update) {
         return this.http
         .put<any>(this.base_url + this.users_endpoint, update);
-    } //updateTask
+    } //updateusers
     
-    //Deletes a Task
+    //Deletes a users
     deleteUser(userId) {
         return this.http
         .delete<any>(`${this.base_url + this.users_endpoint}/${userId}`);
-    } //deleteTask
+    } //deleteusers
     
 }
