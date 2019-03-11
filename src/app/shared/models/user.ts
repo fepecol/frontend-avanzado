@@ -38,7 +38,9 @@ export class User {
   experiencia_laboral: {
     empresa: string;
     puesto: string;
-    fechas: string;
+    fechaInicio: string;
+    fechaFin: string;
+    tareas: string;
   };
   idiomas: [{
     'nivel': string,

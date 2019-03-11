@@ -66,14 +66,16 @@
           <th>Empresa</th>
           <th>Puesto</th>
           <th>Fechas</th>
+          <th>Acciones</th>
         </tr>
-        <tr *ngFor="let item of experiencia">
+        <tr *ngFor="let item of experiencias">
           <td>{{item.empresa}}</td>
           <td>{{item.puesto}}</td>
-          <td>{{item.fechas}}</td>
+          <td>{{item.fechaInicio}}-{{item.fechaFin}}</td>
+          <td><button (click)="deleteExperiencia()" class="btn btn-secondary">Borrar</button><button (click)="editExperiencia(item)" class="btn btn-secondary">Editar</button></td>
         </tr>
       </table>
-      <button (click)="editExperiencia()" class="btn btn-secondary">Editar</button>
+      <button (click)="newExperiencia()" class="btn btn-secondary">Nueva</button>
   </div>
   <div id="idiomas">
     <h1>Idiomas</h1>
@@ -95,7 +97,7 @@
 <ng-template #editBlock>
   <div *ngIf="edit_datospersonales">
     editar datos personales
-    <app-form [datos_personales]="datos_personales" (edit)=onEdit($event)></app-form>
+    <app-form [datos_personales]="datos_personales" [userId]="id" (edit)=onEdit($event)></app-form>
   </div>
   <div *ngIf="edit_formacion">
       edit_formacion
@@ -103,7 +105,7 @@
   </div>
   <div *ngIf="edit_experiencia">
       edit_experiencia
-      <button (click)="editExperiencia()" class="btn btn-secondary">Guardar</button>
+      <app-form-experiencia [experiencia]="experiencia" [userId]="id" (edit)=onEdit($event)></app-form-experiencia>
   </div>
   <div *ngIf="edit_idiomas">
       edit_idiomas

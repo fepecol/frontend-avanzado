@@ -1,0 +1,24 @@
+<form [formGroup]="experienciaForm" (ngSubmit)="submit()">
+  <div class="form-group">
+    <label for="empresa">Nombre de la empresa</label>
+    <input type="text" name="empresa" id="empresa" formControlName="empresa">
+  </div>
+  <div class="form-group">
+    <label for="fechaInicio">Fecha inico</label>
+    <input type="text" name="fechaInicio" id="fechaInicio" formControlName="fechaInicio">
+  </div>
+  <div class="form-group">
+    <label for="fechaFin">Fecha fin</label>
+    <input type="text" name="fechaFin" id="fechaFin" formControlName="fechaFin">
+  </div>
+  <div class="form-group">
+    <label for="puesto">Puesto desempeñado</label>
+    <input type="text" name="puesto" id="puesto" formControlName="puesto">
+  </div>
+  <div class="form-group">
+    <label for="tareas">Tareas</label>
+    <input type="text" name="tareas" id="tareas" formControlName="tareas">
+  </div>
+
+  <button type="submit" [disabled]="!experienciaForm.valid" class="btn btn-secondary">Guardar</button>
+</form>

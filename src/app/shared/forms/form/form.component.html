@@ -5,7 +5,7 @@
     <label for="apellidos">Apellidos</label>
     <input type="text" name="apellidos" id="apellidos" formControlName="apellidos">
   </div>
-  <!-- <div class="form-group">
+  <div class="form-group">
     <label for="fechaNacimiento">FNacimiento</label>
     <input type="text" name="fechaNacimiento" id="fechaNacimiento" formControlName="fechaNacimiento">
   </div>
@@ -17,7 +17,7 @@
   </div>
   <div class="form-group">
     <label for="tipoDocumento">DNI/NIE</label>
-    <select name="tipoDocumento" id="tipoDocumento" formControlName="tipoDocumento"
+    <select name="tipoDocumento" id="tipoDocumento" formControlName="tipoDocumento">
       <option value="volvo">NIF/NIE</option>
       <option value="saab">Pasaporte</option>
       <option value="mercedes">Otro</option>
@@ -46,7 +46,7 @@
   <div class="form-group">
     <label for="competencias">Otras competencias</label>
     <input type="text" name="competencias" id="competencias" formControlName="competencias">
-  </div> -->
+  </div>
 
   <button type="submit" [disabled]="!editForm.valid" class="btn btn-secondary">Guardar</button>
 </form>

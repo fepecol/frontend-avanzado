@@ -12,10 +12,10 @@ import { User } from '../../shared/models/user';
 })
 export class ProfileComponent implements OnInit {
   id: number;
-  user: User;
   datos_personales: User["datos_personales"];
   formacion: User["formacion_academica"];
-  experiencia: User["experiencia_laboral"];
+  experiencias: User["experiencia_laboral"];
+  experiencia: object;
   idiomas: User["idiomas"];
   edit: boolean;
   edit_datospersonales: boolean;
@@ -34,10 +34,9 @@ export class ProfileComponent implements OnInit {
     this.edit_experiencia=false;
     this.edit_idiomas=false;
     this.usersservice.getUser(this.id).subscribe(user => {
-      console.log(user);
       this.datos_personales=user.datos_personales;
       this.formacion=user.formacion_academica;
-      this.experiencia=user.experiencia_laboral;
+      this.experiencias=user.experiencia_laboral;
       this.idiomas=user.idiomas;
     });
   }
@@ -56,7 +55,13 @@ export class ProfileComponent implements OnInit {
     this.edit_formacion?this.edit_formacion=false:this.edit_formacion=true
   }
 
-  editExperiencia(){
+  newExperiencia(){
+    this.experiencia={};
+    this.editar();
+    this.edit_experiencia?this.edit_experiencia=false:this.edit_experiencia=true
+  }
+  editExperiencia(item){
+    this.experiencia=item;
     this.editar();
     this.edit_experiencia?this.edit_experiencia=false:this.edit_experiencia=true
   }
@@ -68,6 +73,10 @@ export class ProfileComponent implements OnInit {
 
   onEdit(ev){
     console.log(ev);
-    this.editDatos();
+    this.editar();
+    this.edit_datospersonales=false;
+    this.edit_formacion=false;
+    this.edit_experiencia=false;
+    this.edit_idiomas=false;
   }
 }

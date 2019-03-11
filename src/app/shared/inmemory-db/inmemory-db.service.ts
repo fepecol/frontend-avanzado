@@ -7,8 +7,8 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 1,
         datos_personales:{
-          nombre: 'Félix',
-          apellidos: 'Pérez Collado',
+          nombre: 'Felix',
+          apellidos: 'Perez Collado',
           email: 'felix_9669@hotmail.com',
           fechaNacimiento: '6/11/1992',
           telefono: '666333999',
@@ -35,14 +35,18 @@ export class InMemoryDataService implements InMemoryDbService {
         ],
         experiencia_laboral:[
           {
-          empresa:'Santander',
-          puesto:'Programador junior',
-          fechas:'01/10/2011-01/12/2012'
+            empresa:'Santander',
+            puesto:'Programador junior',
+            fechaInicio:'01/10/2011',
+            fechaFin:'01/12/2012',
+            tareas:'Desarrollo frontend'
           },
           {
             empresa:'Spotify',
             puesto:'Programador senior',
-            fechas:'01/01/2013'
+            fechaInicio:'01/01/2013',
+            fechaFin:'',
+            tareas:'Desarrollo backend'
             }
         ],
         idiomas:[
