@@ -22,16 +22,16 @@ export class InMemoryDataService implements InMemoryDbService {
         formacion_academica:[
           {
           nivel:'Ciclo formativo',
-          título:'Desarrollo en aplicaiones web',
+          titulo:'Desarrollo en aplicaiones web',
           centro:'IES Cerdanyola',
           fecha:'10/09/2005',
           certificado:''},
           {
-            nivel:'Universidad',
-            título:'Ingeniero en informáctica',
-            centro:'Universidad Oberta de Cataluña',
-            fecha:'10/10/2010',
-            certificado:''}
+          nivel:'Universidad',
+          titulo:'Ingeniero en informáctica',
+          centro:'Universidad Oberta de Cataluña',
+          fecha:'10/10/2010',
+          certificado:''}
         ],
         experiencia_laboral:[
           {

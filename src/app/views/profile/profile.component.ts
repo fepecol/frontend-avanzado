@@ -13,7 +13,8 @@ import { User } from '../../shared/models/user';
 export class ProfileComponent implements OnInit {
   id: number;
   datos_personales: User["datos_personales"];
-  formacion: User["formacion_academica"];
+  formaciones: User["formacion_academica"];
+  formacion: object;
   experiencias: User["experiencia_laboral"];
   experiencia: object;
   idiomas: User["idiomas"];
@@ -35,7 +36,7 @@ export class ProfileComponent implements OnInit {
     this.edit_idiomas=false;
     this.usersservice.getUser(this.id).subscribe(user => {
       this.datos_personales=user.datos_personales;
-      this.formacion=user.formacion_academica;
+      this.formaciones=user.formacion_academica;
       this.experiencias=user.experiencia_laboral;
       this.idiomas=user.idiomas;
     });
@@ -50,9 +51,20 @@ export class ProfileComponent implements OnInit {
     this.edit_datospersonales?this.edit_datospersonales=false:this.edit_datospersonales=true
   }
 
-  editFormacion(){
+  newFormacion(){
+    this.formacion={};
     this.editar();
     this.edit_formacion?this.edit_formacion=false:this.edit_formacion=true
+  }
+
+  editFormacion(item){
+    this.formacion=item;
+    this.editar();
+    this.edit_formacion?this.edit_formacion=false:this.edit_formacion=true
+  }
+
+  deleteFormacion(item){
+    console.log('Eliminar formacion', item);
   }
 
   newExperiencia(){
@@ -64,6 +76,10 @@ export class ProfileComponent implements OnInit {
     this.experiencia=item;
     this.editar();
     this.edit_experiencia?this.edit_experiencia=false:this.edit_experiencia=true
+  }
+
+  deleteExperiencia(item){
+    console.log('Eliminar experiencia', item);
   }
 
   editIdiomas(){

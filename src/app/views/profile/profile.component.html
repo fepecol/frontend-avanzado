@@ -48,16 +48,18 @@
         <th>Centro</th>
         <th>Fecha</th>
         <th>Certificado</th>
+        <th>Acciones</th>
       </tr>
-      <tr *ngFor="let item of formacion">
+      <tr *ngFor="let item of formaciones">
         <td>{{item.nivel}}</td>
         <td>{{item.titulo}}</td>
         <td>{{item.centro}}</td>
         <td>{{item.fecha}}</td>
         <td>{{item.certificado}}</td>
+        <td><button (click)="deleteFormacion()" class="btn btn-secondary">Borrar</button><button (click)="editFormacion(item)" class="btn btn-secondary">Editar</button></td>
       </tr>
     </table>
-    <button (click)="editFormacion()" class="btn btn-secondary">Editar</button>
+    <button (click)="newFormacion()" class="btn btn-secondary">Nueva</button>
   </div>
   <div id="experiencia-laboral">
     <h1>Experiencia laboral</h1>
@@ -72,7 +74,7 @@
           <td>{{item.empresa}}</td>
           <td>{{item.puesto}}</td>
           <td>{{item.fechaInicio}}-{{item.fechaFin}}</td>
-          <td><button (click)="deleteExperiencia()" class="btn btn-secondary">Borrar</button><button (click)="editExperiencia(item)" class="btn btn-secondary">Editar</button></td>
+          <td><button (click)="deleteExperiencia(item)" class="btn btn-secondary">Borrar</button><button (click)="editExperiencia(item)" class="btn btn-secondary">Editar</button></td>
         </tr>
       </table>
       <button (click)="newExperiencia()" class="btn btn-secondary">Nueva</button>
@@ -96,15 +98,13 @@
 </div>
 <ng-template #editBlock>
   <div *ngIf="edit_datospersonales">
-    editar datos personales
     <app-form [datos_personales]="datos_personales" [userId]="id" (edit)=onEdit($event)></app-form>
   </div>
   <div *ngIf="edit_formacion">
-      edit_formacion
+      <app-form-formacion [formacion]="formacion" [userId]="id" (edit)=onEdit($event)></app-form-formacion>
       <button (click)="editFormacion()" class="btn btn-secondary">Guardar</button>
   </div>
   <div *ngIf="edit_experiencia">
-      edit_experiencia
       <app-form-experiencia [experiencia]="experiencia" [userId]="id" (edit)=onEdit($event)></app-form-experiencia>
   </div>
   <div *ngIf="edit_idiomas">

@@ -6,9 +6,10 @@ import { ProfileComponent } from './profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormComponent } from '../../shared/forms/form/form.component';
 import { FormExperienciaComponent } from '../../shared/forms/form-experiencia/form-experiencia.component';
+import { FormFormacionComponent } from '../../shared/forms/form-formacion/form-formacion.component';
 
 @NgModule({
-  declarations: [ProfileComponent, FormComponent, FormExperienciaComponent],
+  declarations: [ProfileComponent, FormComponent, FormExperienciaComponent, FormFormacionComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule, 
