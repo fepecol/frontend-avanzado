@@ -117,8 +117,6 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteIdiomas(idiomas, i){
-    console.log('Eliminar idioma', i);
-    console.log('Idiomas', idiomas);
     idiomas.splice(i, 1);
     this.user.idiomas=idiomas;
     this.usersservice.updateUser(this.user).subscribe(res => {

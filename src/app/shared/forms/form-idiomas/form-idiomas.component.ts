@@ -12,7 +12,6 @@ export class FormIdiomasComponent implements OnInit {
 
   idiomaForm: FormGroup;
   @Input() idioma;
-  @Input() userId;
   @Input() user;
   @Input() index;
   @Input() new;
@@ -24,7 +23,7 @@ export class FormIdiomasComponent implements OnInit {
     
     this.idioma=this.user.idiomas[this.index] || {nivel:'',idioma:'',fecha:''};
     this.idiomaForm = new FormGroup({
-      idioma: new FormControl(this.idioma.idioma,[Validators.required, Validators.minLength(3),Validators.maxLength(55),Validators.pattern('^[a-zA-Z]*')]),
+      idioma: new FormControl(this.idioma.idioma,[Validators.required, Validators.minLength(3),Validators.maxLength(55)/*,Validators.pattern('^[a-zA-Z]*')*/]),
       nivel: new FormControl(this.idioma.nivel),
       fecha: new FormControl(this.idioma.fecha)
     });
