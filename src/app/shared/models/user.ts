@@ -61,7 +61,7 @@ export class User {
         municipio: string;
         titulos: string;
         estado: string;
-      },
+      }
     ]
   }
   
