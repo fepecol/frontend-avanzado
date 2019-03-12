@@ -44,12 +44,12 @@ export const rootRouterConfig: Routes = [
         path: 'profile',
         loadChildren: './views/profile/profile.module#ProfileModule',
         data: { title: 'Material', breadcrumb: 'MATERIAL' }
-      }/*,
+      },
       {
         path: 'offers',
-        loadChildren: './views/offers.module#OffersModule',
+        loadChildren: './views/offers/offers.module#OffersModule',
         data: { title: 'Offers', breadcrumb: 'Offers' }
-      }*/
+      }
     ]
   },
   {

@@ -1,3 +1,17 @@
-<p>
-  offers works!
-</p>
+<table class="table table-striped">
+  <tr>
+    <th>Puesto</th>
+    <th>Empresa</th>
+    <th>Familia profesional</th>
+    <th>Fecha</th>
+    <th>Provincia</th>
+  </tr>
+  <tr *ngFor="let item of offers">
+    <td >{{item.puesto}}</td>
+    <td>{{item.empresa}}</td>
+    <td>{{item.familia}}</td>
+    <td>{{item.fecha}}</td>
+    <td>{{item.provincia}}</td>
+    <!-- <td><button (click)="editFormacion(item)" class="btn btn-secondary">Editar</button><button (click)="deleteFormacion()" class="btn btn-secondary">Borrar</button></td> -->
+  </tr>
+</table>
