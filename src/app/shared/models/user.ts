@@ -43,9 +43,10 @@ export class User {
     tareas: string;
   };
   idiomas: [{
-    'nivel': string,
+    nivel:string;
+    idioma:string;
+    fecha:string;
     }
   ];
   
-  idioma: string;
 }

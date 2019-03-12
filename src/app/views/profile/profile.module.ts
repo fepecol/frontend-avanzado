@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { ProfileComponent } from './profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormPersonalComponent } from '../../shared/forms/form-personal/form-personal.component';
@@ -24,8 +23,7 @@ import { FormEmpresaComponent } from '../../shared/forms/form-empresa/form-empre
     CommonModule,
     ProfileRoutingModule, 
     FormsModule,
-    ReactiveFormsModule,
-    NgSelectModule
+    ReactiveFormsModule
   ]
 })
 export class ProfileModule { }

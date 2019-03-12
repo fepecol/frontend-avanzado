@@ -89,19 +89,19 @@
             <th>Fecha</th>
             <th>Acciones</th>
           </tr>
-          <tr *ngFor="let item of idiomas">
+          <tr *ngFor="let item of idiomas; index as i;">
             <td>{{item.nivel}}</td>
             <td>{{item.idioma}}</td>
             <td>{{item.fecha}}</td>
-            <td><button (click)="editIdiomas(item)" class="btn btn-secondary">Editar</button><button (click)="deleteIdiomas(item)" class="btn btn-secondary">Borrar</button></td>
+            <td><button (click)="editIdiomas(item, i)" class="btn btn-secondary">Editar</button><button (click)="deleteIdiomas(idiomas, i)" class="btn btn-secondary">Borrar</button></td>
           </tr>
         </table>  
-        <button (click)="newIdiomas()" class="btn btn-secondary editar">Editar</button>
+        <button (click)="newIdiomas()" class="btn btn-secondary editar">Nuevo</button>
     </div>
   </div>
   <ng-template #editBlock>
     <div *ngIf="edit_datospersonales">
-      <app-form-personal [datos_personales]="datos_personales" [userId]="id" (edit)=onEdit($event)></app-form-personal>
+      <app-form-personal [user]="user" [userId]="id" (edit)=onEdit($event)></app-form-personal>
     </div>
     <div *ngIf="edit_formacion">
         <app-form-formacion [formacion]="formacion" [userId]="id" (edit)=onEdit($event)></app-form-formacion>
@@ -110,7 +110,7 @@
         <app-form-experiencia [experiencia]="experiencia" [userId]="id" (edit)=onEdit($event)></app-form-experiencia>
     </div>
     <div *ngIf="edit_idiomas">
-      <app-form-idiomas [idioma]="idioma" [userId]="id" (edit)=onEdit($event)></app-form-idiomas>
+      <app-form-idiomas [user]="user" [new]="new" [userId]="id" [index]="index" (edit)=onEdit($event)></app-form-idiomas>
     </div>
   </ng-template>
 </div>

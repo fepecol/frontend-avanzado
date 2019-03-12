@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { User } from '../../models/user';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-form-personal',
@@ -8,14 +10,17 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FormPersonalComponent implements OnInit {
   editForm: FormGroup;
+  datos_personales: User["datos_personales"];
   @Input() userId;
-  @Input() datos_personales;
+  @Input() user;
   @Output() edit = new EventEmitter<boolean>();
-  constructor() { }
+
+  constructor(private usersservice: UsersService) { }
 
   ngOnInit() {
+    this.datos_personales=this.user.datos_personales;
     console.log(this.datos_personales);
-    console.log(this.userId);
+    console.log(this.user);
     this.editForm = new FormGroup({
       nombre: new FormControl(this.datos_personales.nombre,[Validators.required, Validators.minLength(3),Validators.maxLength(55),Validators.pattern('^[a-zA-Z]*')]),
       apellidos: new FormControl(this.datos_personales.apellidos,[Validators.required,Validators.minLength(3),Validators.maxLength(55)/*,Validators.pattern('^[a-zA-Z]*')*/]),
@@ -34,8 +39,10 @@ export class FormPersonalComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.editForm.value);
-    this.edit.emit(true);
+    this.user.datos_personales=this.editForm.value;
+    this.usersservice.updateUser(this.user).subscribe(res => {
+      this.edit.emit(true);
+    });
   }
 
 }
