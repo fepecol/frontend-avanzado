@@ -9,4 +9,5 @@ export class Offer {
     provincia: string;
     municipio: string;
     titulos: string;
+    estado: string;
 }

@@ -60,7 +60,27 @@ export class InMemoryDataService implements InMemoryDbService {
             idioma:'Inglés',
             fecha:'01/01/2013-'
           }
-        ]
+        ],
+        offers:{
+          entities: [
+            {
+              puesto: 'Professor Extraescolars programació i robòtica educativa',
+              empresa: 'Eixos Creativa',
+              familia: 'Informática y Comunicaciones',
+              fecha: '30/01/2019',
+              provincia: 'Barcelona',
+              estado: 'Sigues en el proceso'
+            },
+            {
+              puesto: 'Programaador Jr Java',
+              empresa: 'Ki - Works',
+              familia: 'Informática y Comunicaciones',
+              fecha: '28/01/2019',
+              provincia: 'Tarragona',
+              estado: 'Proceso abierto'
+            }
+          ]
+        }
       },
       {
         id: 2,
