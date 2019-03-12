@@ -11,7 +11,6 @@ import { UsersService } from '../../services/users.service';
 export class FormPersonalComponent implements OnInit {
   editForm: FormGroup;
   datos_personales: User["datos_personales"];
-  @Input() userId;
   @Input() user;
   @Output() edit = new EventEmitter<boolean>();
 
@@ -19,8 +18,6 @@ export class FormPersonalComponent implements OnInit {
 
   ngOnInit() {
     this.datos_personales=this.user.datos_personales;
-    console.log(this.datos_personales);
-    console.log(this.user);
     this.editForm = new FormGroup({
       nombre: new FormControl(this.datos_personales.nombre,[Validators.required, Validators.minLength(3),Validators.maxLength(55),Validators.pattern('^[a-zA-Z]*')]),
       apellidos: new FormControl(this.datos_personales.apellidos,[Validators.required,Validators.minLength(3),Validators.maxLength(55)/*,Validators.pattern('^[a-zA-Z]*')*/]),
@@ -35,6 +32,7 @@ export class FormPersonalComponent implements OnInit {
       descripcion: new FormControl(this.datos_personales.descripcion),
       competencias: new FormControl(this.datos_personales.competencias),
       carnets: new FormControl(this.datos_personales.carnets),
+      email: new FormControl(this.datos_personales.email),
     });
   }
 

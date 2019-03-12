@@ -101,7 +101,7 @@
   </div>
   <ng-template #editBlock>
     <div *ngIf="edit_datospersonales">
-      <app-form-personal [user]="user" [userId]="id" (edit)=onEdit($event)></app-form-personal>
+      <app-form-personal [user]="user" (edit)=onEdit($event)></app-form-personal>
     </div>
     <div *ngIf="edit_formacion">
         <app-form-formacion [formacion]="formacion" [userId]="id" (edit)=onEdit($event)></app-form-formacion>
