@@ -51,13 +51,13 @@
           <th>Certificado</th>
           <th>Acciones</th>
         </tr>
-        <tr *ngFor="let item of formaciones">
+        <tr *ngFor="let item of formaciones; index as i;">
           <td>{{item.nivel}}</td>
           <td>{{item.titulo}}</td>
           <td>{{item.centro}}</td>
           <td>{{item.fecha}}</td>
           <td>{{item.certificado}}</td>
-          <td><button (click)="editFormacion(item)" class="btn btn-secondary">Editar</button><button (click)="deleteFormacion()" class="btn btn-secondary">Borrar</button></td>
+          <td><button (click)="editFormacion(item, i)" class="btn btn-secondary">Editar</button><button (click)="deleteFormacion(formaciones, i)" class="btn btn-secondary">Borrar</button></td>
         </tr>
       </table>
       <button (click)="newFormacion()" class="btn btn-secondary editar">Nueva</button>
@@ -71,11 +71,11 @@
             <th>Fechas</th>
             <th>Acciones</th>
           </tr>
-          <tr *ngFor="let item of experiencias">
+          <tr *ngFor="let item of experiencias; index as i;">
             <td>{{item.empresa}}</td>
             <td>{{item.puesto}}</td>
             <td>{{item.fechaInicio}}-{{item.fechaFin}}</td>
-            <td><button (click)="editExperiencia(item)" class="btn btn-secondary">Editar</button><button (click)="deleteExperiencia(item)" class="btn btn-secondary">Borrar</button></td>
+            <td><button (click)="editExperiencia(item, i)" class="btn btn-secondary">Editar</button><button (click)="deleteExperiencia(experiencias, i)" class="btn btn-secondary">Borrar</button></td>
           </tr>
         </table>
         <button (click)="newExperiencia()" class="btn btn-secondary editar">Nueva</button>
@@ -104,10 +104,10 @@
       <app-form-personal [user]="user" (edit)=onEdit($event)></app-form-personal>
     </div>
     <div *ngIf="edit_formacion">
-        <app-form-formacion [formacion]="formacion" [userId]="id" (edit)=onEdit($event)></app-form-formacion>
+        <app-form-formacion [user]="user" [new]="new" [index]="index" (edit)=onEdit($event)></app-form-formacion>
     </div>
     <div *ngIf="edit_experiencia">
-        <app-form-experiencia [experiencia]="experiencia" [userId]="id" (edit)=onEdit($event)></app-form-experiencia>
+        <app-form-experiencia [user]="user" [new]="new" [index]="index" (edit)=onEdit($event)></app-form-experiencia>
     </div>
     <div *ngIf="edit_idiomas">
       <app-form-idiomas [user]="user" [new]="new" [index]="index" (edit)=onEdit($event)></app-form-idiomas>

@@ -78,14 +78,20 @@ export class ProfileComponent implements OnInit {
     this.edit_formacion?this.edit_formacion=false:this.edit_formacion=true;
   }
 
-  editFormacion(item){
+  editFormacion(item, i){
     this.formacion=item;
+    this.index=i;
     this.editar();
     this.edit_formacion?this.edit_formacion=false:this.edit_formacion=true;
   }
 
-  deleteFormacion(item){
-    console.log('Eliminar formacion', item);
+  deleteFormacion(formaciones, i){
+    console.log('Eliminar formacion', formaciones);
+    formaciones.splice(i, 1);
+    this.user.formacion_academica=formaciones;
+    this.usersservice.updateUser(this.user).subscribe(res => {
+      console.log('borrado');
+    });
   }
 
   newExperiencia(){
@@ -94,14 +100,20 @@ export class ProfileComponent implements OnInit {
     this.editar();
     this.edit_experiencia?this.edit_experiencia=false:this.edit_experiencia=true;
   }
-  editExperiencia(item){
+  editExperiencia(item, i){
     this.experiencia=item;
+    this.index=i;
     this.editar();
     this.edit_experiencia?this.edit_experiencia=false:this.edit_experiencia=true;
   }
 
-  deleteExperiencia(item){
-    console.log('Eliminar experiencia', item);
+  deleteExperiencia(experiencias, i){
+    console.log('Eliminar experiencia', experiencias);
+    experiencias.splice(i, 1);
+    this.user.experiencia_laboral=experiencias;
+    this.usersservice.updateUser(this.user).subscribe(res => {
+      console.log('borrado');
+    });
   }
 
   newIdiomas(){

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UsersService } from '../../services/users.service';
+import { Formacion } from '../../models/formacion';
 
 @Component({
   selector: 'app-form-formacion',
@@ -12,24 +14,28 @@ export class FormFormacionComponent implements OnInit {
   ciclo: boolean;
   otro: boolean;
 
-  @Input() userId;
-  @Input() formacion;
+  formacion: Formacion;
+  @Input() user;
+  @Input() index;
+  @Input() new;
   @Output() edit = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private usersservice: UsersService) { }
 
   ngOnInit() {
     this.ciclo=false;
     this.otro=false;
     this.universitario=true;
+    this.formacion=this.user.formacion_academica[this.index] || {};
     console.log(this.formacion);
+    console.log(this.user);
     this.formacionForm = new FormGroup({
-      titulo: new FormControl(this.formacion.titulo,[Validators.required, Validators.minLength(3),Validators.maxLength(255),/*Validators.pattern('^[a-zA-Z]*')*/]),
+      titulo: new FormControl(this.formacion.titulo/*,[Validators.required, Validators.minLength(3),Validators.maxLength(255),Validators.pattern('^[a-zA-Z]*')]*/),
       tipoTitulo: new FormControl(this.formacion.tipoTitulo),
-      centroUniversitario: new FormControl(this.formacion.centroUniversitario),
+      centroUniversitario: new FormControl(this.formacion.centro),
       fechaUniversidad: new FormControl(this.formacion.fecha),
       bilingue: new FormControl(this.formacion.bilingue),
-      centroEducativo: new FormControl(this.formacion.centroEducativo),
+      centroEducativo: new FormControl(this.formacion.centro),
       familia: new FormControl(this.formacion.familia),
       grado: new FormControl(this.formacion.bilingue),
       ciclo: new FormControl(this.formacion.centroEducativo),
@@ -41,7 +47,16 @@ export class FormFormacionComponent implements OnInit {
 
   submit(){
     console.log(this.formacionForm.value);
-    this.edit.emit(true);
+    if(this.new){
+      console.log('nuevo');
+      this.user.formacion_academica.push(this.formacionForm.value);
+    }else{
+      this.user.formacion_academica[this.index]=this.formacionForm.value;
+      console.log('editar');
+    }
+    this.usersservice.updateUser(this.user).subscribe(res => {
+      this.edit.emit(true);
+    });
   }
 
   tipoTitulo(select){

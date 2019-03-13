@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-//import { User } from '../../models/user';
+import { Idioma } from '../../models/idioma';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { UsersService } from '../../services/users.service';
 export class FormIdiomasComponent implements OnInit {
 
   idiomaForm: FormGroup;
-  @Input() idioma;
+  idioma: Idioma;
   @Input() user;
   @Input() index;
   @Input() new;

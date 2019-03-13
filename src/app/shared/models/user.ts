@@ -35,12 +35,14 @@ export class User {
     fecha: string;
     certificado: string;
   };
-  experiencia_laboral: {
-    empresa: string;
-    puesto: string;
-    fechaInicio: string;
-    fechaFin: string;
-    tareas: string;
+  experiencia_laboral:{
+    entities:[{  
+      empresa: string;
+      puesto: string;
+      fechaInicio: string;
+      fechaFin: string;
+      tareas: string;
+    }]
   };
   idiomas: [{
     nivel:string;
