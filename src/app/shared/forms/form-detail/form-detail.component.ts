@@ -11,7 +11,9 @@ export class FormDetailComponent implements OnInit {
 
   detailForm: FormGroup;
   boton: string;
+  @Input() empresaProfile;
   @Input() offer;
+  @Input() empresa;
   @Input() borrar;
   @Output() edit = new EventEmitter<boolean>();
 
@@ -19,6 +21,7 @@ export class FormDetailComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.offer);
+    console.log(this.empresa);
     this.borrar?this.boton="Borrarse":this.boton="Inscribirse";
     this.detailForm = new FormGroup({
       empresa: new FormControl(this.offer.empresa,[Validators.required, Validators.minLength(3),Validators.maxLength(55)]),
@@ -32,12 +35,16 @@ export class FormDetailComponent implements OnInit {
   }
 
   submit(){
-    if(this.borrar){
-      console.log('borrarse');
+    if(this.empresaProfile){
+      console.log(this.empresa);
     }else{
-      console.log('inscribirse');
+      if(this.borrar){
+        console.log('borrarse');
+      }else{
+        console.log('inscribirse');
+      }
+      console.log(this.detailForm.value);
     }
-    console.log(this.detailForm.value);
     this.edit.emit(true);
   }
 

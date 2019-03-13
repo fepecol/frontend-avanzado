@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../../shared/services/offers.service';
 import { Offer } from '../../shared/models/offer';
-import { UsersService } from '../../shared/services/users.service';
+import { EmpresasService } from '../../shared/services/empresas.service';
 import { ActivatedRoute } from '@angular/router';
+import { UsersService } from '../../shared/services/users.service';
+import { Empresa } from '../../shared/models/empresa';
 
 @Component({
   selector: 'app-offers',
@@ -16,25 +18,45 @@ export class OffersComponent implements OnInit {
   dispOffers: Offer[];
   offer: Offer;
   userId: number;
+  empresaId: number;
+  empresa: Empresa;
   detail: boolean=false;
+  empresaProfile: boolean=false;
   viewMyOffers: boolean=false;
   titulo: string="Ofertas disponibles";
 
   constructor(private route: ActivatedRoute,
     private offerservice: OffersService, 
-    private usersservice: UsersService,) { }
+    private usersservice: UsersService, 
+    private empresasservice: EmpresasService,) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => this.userId = params.userId);
-    this.offerservice.getOffers().subscribe(offers => {
-      console.log(offers);
-      this.dispOffers=offers;
-      this.offers=offers;
-    })
+    this.route.queryParams.subscribe(params => this.empresaId = params.empresaId);
+    if(this.userId!=undefined){
+      console.log('user',this.userId);
+      this.offerservice.getOffers().subscribe(offers => {
+        console.log(offers);
+        this.dispOffers=offers;
+        this.offers=offers;
+      })
+    }
+    if(this.empresaId!=undefined){
+      this.empresaProfile=true;
+      console.log('empresa',this.empresaId);
+      this.titulo="Mis ofertas publicadas";
+      this.empresasservice.getEmpresa(this.empresaId).subscribe(empresa => {
+        this.empresa=empresa;
+        console.log(empresa.ofertas.entities);
+        this.offers=empresa.ofertas.entities;
+      })
+    }
+    
   }
 
   detalle(offer){
     this.offer=offer;
+    this.empresaProfile=false;
     console.log(offer);
     console.log('ver mis ofertas',this.viewMyOffers);
     this.detail=true;
@@ -59,6 +81,28 @@ export class OffersComponent implements OnInit {
   getOffers(){
     this.viewMyOffers=false;
     this.offers=this.dispOffers;
+  }
+
+  editOffer(item,i){
+    console.log('editar oferta',i);
+    this.offer=item;
+    this.detail=true;
+  }
+
+  newOffer(){
+    this.offer={
+      id: NaN,
+      puesto: '',
+      descripcion: '',
+      empresa: '',
+      familia: '',
+      fecha: '',
+      provincia: '',
+      municipio: '',
+      titulos: '',
+      estado: '',
+    };
+    this.detail=true;
   }
 
   onEdit(ev){

@@ -1,4 +1,15 @@
 <h1>Detalle de la oferta</h1>
+<div *ngIf="empresaProfile">
+  <h2>Candidatos suscritos</h2>
+  <table class="table table-striped">
+    <tr>
+      <th>Nombre</th>
+      <th>Fecha nacimiento</th>
+      <th>Familia profesional</th>
+      <th>Título</th>
+    </tr>
+  </table>
+</div>
 <form [formGroup]="detailForm" (ngSubmit)="submit()">
   <h2>Oferta</h2>
   <div class="form-group">

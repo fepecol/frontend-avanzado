@@ -3,12 +3,12 @@
       <div class="col-7">
         <h1>{{titulo}}</h1>
       </div>
-      <div class="col-3">
+      <div *ngIf="!empresaProfile" class="col-3">
         <button (click)="getMyOffers()" class="btn btn-secondary">Mis ofertas</button>
         <button (click)="getOffers()" class="btn btn-secondary">Listado ofertas</button>
       </div>
     </div>
-    <table class="table table-striped">
+    <table *ngIf="!empresaProfile" class="table table-striped">
       <tr>
         <th>Puesto</th>
         <th>Empresa</th>
@@ -17,8 +17,8 @@
         <th>Provincia</th>
         <th *ngIf="viewMyOffers">Estado</th>
       </tr>
-      <tr *ngFor="let item of offers" (click)="detalle(item)">
-        <td >{{item.puesto}}</td>
+      <tr *ngFor="let item of offers; index as i;" (click)="detalle(item)">
+        <td>{{item.puesto}}</td>
         <td>{{item.empresa}}</td>
         <td>{{item.familia}}</td>
         <td>{{item.fecha}}</td>
@@ -26,8 +26,29 @@
         <td *ngIf="viewMyOffers">{{item.estado}}</td>
       </tr>
     </table>
+    <table *ngIf="empresaProfile" class="table table-striped">
+        <tr>
+          <th>Puesto</th>
+          <th>Empresa</th>
+          <th>Familia profesional</th>
+          <th>Fecha</th>
+          <th>Provincia</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let item of offers; index as i;">
+          <td>{{item.puesto}}</td>
+          <td>{{item.empresa}}</td>
+          <td>{{item.familia}}</td>
+          <td>{{item.fecha}}</td>
+          <td>{{item.provincia}}</td>
+          <td>{{item.estado}}</td>
+          <td><button (click)="editOffer(item,i)" class="btn btn-secondary editar">Editar</button></td>
+        </tr>
+      </table>
+      <button *ngIf="empresaProfile" (click)="newOffer()" class="btn btn-secondary editar">Nueva</button>
 </div>
 <ng-template #detailBlock>
   edit block
-  <app-form-detail [offer]="offer" [borrar]="viewMyOffers" (edit)=onEdit($event)></app-form-detail>
+  <app-form-detail [offer]="offer" [borrar]="viewMyOffers" [empresa]="empresa" [empresaProfile]="empresaProfile" (edit)=onEdit($event)></app-form-detail>
 </ng-template>

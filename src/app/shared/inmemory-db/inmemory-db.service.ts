@@ -152,6 +152,31 @@ export class InMemoryDataService implements InMemoryDbService {
             nombre: 'Florentino Perez',
             telefono: '600600600',
             email: 'florentino@movistar.com',
+          },
+          ofertas:{
+            entities:[{  
+                offerId: '3',
+                puesto: 'Professor Extraescolars programació i robòtica educativa',
+                descripcion: 'Se busca a alguien con pasion por la enseñanza',
+                empresa: 'Movistar',
+                familia: 'Informática y Comunicaciones',
+                fecha: '30/01/2019',
+                provincia: 'Barcelona',
+                municipio: 'Terrassa',
+                titulos: '',
+                estado: 'abierta',
+              },{
+                offerId: '1',
+                puesto: 'Programador junior',
+                descripcion: 'Buscamos un perfil sin experiencia para crecer',
+                empresa: 'Computing SL',
+                familia: 'Programación web',
+                fecha: '01/05/2019',
+                provincia: 'Barcelona',
+                municipio: 'Barcelona',
+                titulos: 'Grado en ingenieria informatica',
+              }
+            ]
           }
         },
         {
@@ -167,8 +192,23 @@ export class InMemoryDataService implements InMemoryDbService {
             nombre: 'Bill Gates',
             telefono: '611611611',
             email: 'bill@fcc.com',
+          },
+          ofertas:{
+            entities:[{
+              offerId: '4',
+              puesto: 'Administrativa',
+              empresa: 'Servium',
+              familia: 'Administración y Gestión',
+              fecha: '25/01/2019',
+              descripcion: 'Persona para trabajar en oficina',
+              provincia: 'Barcelona',
+              municipio: 'Sant Cugat',
+              titulos: '',
+              estado: 'abierta',
+              }
+            ]
+          }
         }
-      }
      ];
 
      let offers=[
@@ -193,6 +233,29 @@ export class InMemoryDataService implements InMemoryDbService {
           provincia: 'Barcelona',
           municipio: 'Sabadell',
           titulos: 'Grado en marqueting',
+        },
+        {
+          id: '3',
+          puesto: 'Professor Extraescolars programació i robòtica educativa',
+          descripcion: 'Se busca a alguien con pasion por la enseñanza',
+          empresa: 'Movistar',
+          familia: 'Informática y Comunicaciones',
+          fecha: '30/01/2019',
+          provincia: 'Barcelona',
+          municipio: 'Terrassa',
+          titulos: '',
+          estado: 'abierta',
+        },{
+          id: '4',
+          puesto: 'Administrativa',
+          empresa: 'Servium',
+          familia: 'Administración y Gestión',
+          fecha: '25/01/2019',
+          descripcion: 'Persona para trabajar en oficina',
+          provincia: 'Barcelona',
+          municipio: 'Sant Cugat',
+          titulos: '',
+          estado: 'abierta',
         }
     ];
 
