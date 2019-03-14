@@ -25,7 +25,10 @@
       <label for="bilingue">Formación bilingüe</label>
       <input type="text" name="bilingue" id="bilingue" formControlName="bilingue">
     </div>
-    <p>Certificado</p>
+    <div class="form-group">
+        <label for="myFile">Certificado</label>
+        <input type="file" name="myFile">
+    </div>
   </div>
   <!-- ciclo -->
   <div *ngIf="ciclo">
@@ -57,7 +60,10 @@
         <label for="cicloBilingue">Formación bilingüe</label>
         <input type="text" name="cicloBilingue" id="cicloBilingue" formControlName="cicloBilingue">
     </div>
-    <p>Certificado</p>
+    <div class="form-group">
+        <label for="myFile">Certificado</label>
+        <input type="file" name="myFile">
+    </div>
   </div> 
   <button type="submit" [disabled]="!formacionForm.valid" class="btn btn-secondary">Guardar</button>
 </form>

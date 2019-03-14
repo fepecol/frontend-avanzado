@@ -30,16 +30,16 @@ export class FormFormacionComponent implements OnInit {
     console.log(this.formacion);
     console.log(this.user);
     this.formacionForm = new FormGroup({
-      titulo: new FormControl(this.formacion.titulo/*,[Validators.required, Validators.minLength(3),Validators.maxLength(255),Validators.pattern('^[a-zA-Z]*')]*/),
+      titulo: new FormControl(this.formacion.titulo),
       tipoTitulo: new FormControl(this.formacion.tipoTitulo),
       centroUniversitario: new FormControl(this.formacion.centro),
-      fechaUniversidad: new FormControl(this.formacion.fecha),
+      fechaUniversidad: new FormControl(this.formacion.fecha,[Validators.pattern('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}')]),
       bilingue: new FormControl(this.formacion.bilingue),
       centroEducativo: new FormControl(this.formacion.centro),
       familia: new FormControl(this.formacion.familia),
       grado: new FormControl(this.formacion.bilingue),
       ciclo: new FormControl(this.formacion.centroEducativo),
-      fechaCiclo: new FormControl(this.formacion.familia),
+      fechaCiclo: new FormControl(this.formacion.familia,[Validators.pattern('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}')]),
       dual: new FormControl(this.formacion.dual),
       cicloBilingue: new FormControl(this.formacion.cicloBilingue),
     });

@@ -20,7 +20,7 @@ export class FormEmpresaComponent implements OnInit {
     console.log(this.empresaId);
     this.empresaForm = new FormGroup({
       nombre: new FormControl(this.empresa.nombre,[Validators.required, Validators.minLength(3),Validators.maxLength(55),Validators.pattern('^[a-zA-Z]*')]),
-      razonSocial: new FormControl(this.empresa.razonSocial),
+      razonSocial: new FormControl(this.empresa.razonSocial,[Validators.required, Validators.minLength(3),Validators.maxLength(55),Validators.pattern('^[a-zA-Z]*')]),
       cif: new FormControl(this.empresa.cif),
       direcion: new FormControl(this.empresa.direccion),
       provincia: new FormControl(this.empresa.provincia),

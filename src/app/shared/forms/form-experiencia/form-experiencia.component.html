@@ -17,7 +17,7 @@
   </div>
   <div class="form-group">
     <label for="tareas">Tareas</label>
-    <input type="text" name="tareas" id="tareas" formControlName="tareas">
+    <textarea name="tareas" rows="10" cols="30" formControlName="tareas"></textarea>
   </div>
 
   <button type="submit" [disabled]="!experienciaForm.valid" class="btn btn-secondary">Guardar</button>

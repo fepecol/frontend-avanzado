@@ -22,10 +22,10 @@ export class FormExperienciaComponent implements OnInit {
     console.log(this.experiencia);
     this.experiencia=this.user.experiencia_laboral[this.index] || {};
     this.experienciaForm = new FormGroup({
-      empresa: new FormControl(this.experiencia.empresa,[Validators.required, Validators.minLength(3),Validators.maxLength(255),Validators.pattern('^[a-zA-Z]*')]),
-      fechaInicio: new FormControl(this.experiencia.fechaInicio),
-      fechaFin: new FormControl(this.experiencia.fechaFin),
-      puesto: new FormControl(this.experiencia.puesto, [Validators.minLength(3),Validators.maxLength(255),Validators.pattern('^[a-zA-Z ]*')]),
+      empresa: new FormControl(this.experiencia.empresa,[Validators.minLength(3),Validators.maxLength(255),Validators.pattern('^[a-zA-Z][a-zA-Z ]*')]),
+      fechaInicio: new FormControl(this.experiencia.fechaInicio,[Validators.pattern('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}')]),
+      fechaFin: new FormControl(this.experiencia.fechaFin,[Validators.pattern('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}')]),
+      puesto: new FormControl(this.experiencia.puesto,[Validators.minLength(3),Validators.maxLength(255),Validators.pattern('^[a-zA-Z][a-zA-Z ]*')]),
       tareas: new FormControl(this.experiencia.tareas),
     });
   }

@@ -12,6 +12,7 @@ export class FormIdiomasComponent implements OnInit {
 
   idiomaForm: FormGroup;
   idioma: Idioma;
+  otroIdioma: boolean=false;
   @Input() user;
   @Input() index;
   @Input() new;
@@ -23,13 +24,28 @@ export class FormIdiomasComponent implements OnInit {
     
     this.idioma=this.user.idiomas[this.index] || {nivel:'',idioma:'',fecha:''};
     this.idiomaForm = new FormGroup({
-      idioma: new FormControl(this.idioma.idioma,[Validators.required, Validators.minLength(3),Validators.maxLength(55)/*,Validators.pattern('^[a-zA-Z]*')*/]),
+      idioma: new FormControl(this.idioma.idioma),
+      otroIdioma: new FormControl(''),
       nivel: new FormControl(this.idioma.nivel),
       fecha: new FormControl(this.idioma.fecha)
     });
   }
 
+  otherIdioma(idioma){
+    if(idioma=='Otro'){
+      this.otroIdioma=true;
+    }else{
+      this.otroIdioma=false;
+      this.idiomaForm.value.otroIdioma='';
+    }
+  }
+
   submit(){
+    console.log(this.idiomaForm.value);
+    if(this.idiomaForm.value.otroIdioma){
+      this.idiomaForm.value.idioma=this.idiomaForm.value.otroIdioma;
+    }
+    console.log(this.idiomaForm.value); 
     /* diferenciar entre new o edit */
     if(this.new){
       this.user.idiomas.push(this.idiomaForm.value);
