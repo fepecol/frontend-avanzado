@@ -10,9 +10,9 @@ import { Formacion } from '../../models/formacion';
 })
 export class FormFormacionComponent implements OnInit {
   formacionForm: FormGroup;
-  universitario: boolean;
-  ciclo: boolean;
-  otro: boolean;
+  universitario: boolean=false;
+  ciclo: boolean=false;
+  otro: boolean=false;
 
   formacion: Formacion;
   @Input() user;
@@ -23,25 +23,25 @@ export class FormFormacionComponent implements OnInit {
   constructor(private usersservice: UsersService) { }
 
   ngOnInit() {
-    this.ciclo=false;
-    this.otro=false;
-    this.universitario=true;
     this.formacion=this.user.formacion_academica[this.index] || {};
+    if(this.formacion.tipoTitulo=='uni'){
+      this.universitario=true;
+    }
+    if(this.formacion.tipoTitulo=='ciclo'){
+      this.ciclo=true;
+    }
     console.log(this.formacion);
     console.log(this.user);
     this.formacionForm = new FormGroup({
-      titulo: new FormControl(this.formacion.titulo),
-      tipoTitulo: new FormControl(this.formacion.tipoTitulo),
-      centroUniversitario: new FormControl(this.formacion.centro),
-      fechaUniversidad: new FormControl(this.formacion.fecha,[Validators.pattern('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}')]),
+      centro: new FormControl(this.formacion.centro),
+      fecha: new FormControl(this.formacion.fecha,[Validators.pattern('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}')]),
       bilingue: new FormControl(this.formacion.bilingue),
-      centroEducativo: new FormControl(this.formacion.centro),
+      titulo: new FormControl(this.formacion.titulo),
       familia: new FormControl(this.formacion.familia),
       grado: new FormControl(this.formacion.bilingue),
-      ciclo: new FormControl(this.formacion.centroEducativo),
-      fechaCiclo: new FormControl(this.formacion.familia,[Validators.pattern('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}')]),
+      tipoTitulo: new FormControl(this.formacion.tipoTitulo),
+      ciclo: new FormControl(this.formacion.ciclo),
       dual: new FormControl(this.formacion.dual),
-      cicloBilingue: new FormControl(this.formacion.cicloBilingue),
     });
   }
 

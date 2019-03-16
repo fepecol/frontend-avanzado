@@ -1,41 +1,38 @@
 <form [formGroup]="formacionForm" (ngSubmit)="submit()">
   <div class="form-group"> 
-    <label>Tipo de título</label>
-    <select (change)="tipoTitulo($event.target.value)">
-      <option value="uni" ng-selected="selected">Título universitario</option>
+    <label for="tipoTitulo">Tipo de título</label>
+    <select name="tipoTitulo" id="tipoTitulo" formControlName="tipoTitulo" (change)="tipoTitulo($event.target.value)">
+      <option value="uni">Título universitario</option>
       <option value="ciclo">Ciclo formativo</option>
       <option value="otro">Otro</option>
     </select>
   </div>
+  <!-- comun -->
+  <div class="form-group">
+    <label for="centro">Nombre del centro</label>
+    <input type="text" name="centro" id="centro" formControlName="centro">
+  </div>
+  <div class="form-group">
+    <label for="fecha">Fecha del título</label>
+    <input type="text" name="fecha" id="fecha" formControlName="fecha">
+  </div>
+  <div class="form-group">
+    <label for="bilingue">Formación bilingüe</label>
+    <input type="checkbox" name="bilingue" id="bilingue" formControlName="bilingue">
+  </div>
+  <div class="form-group">
+    <label for="myFile">Certificado</label>
+    <input type="file" name="myFile">
+  </div>
   <!-- universidad -->
   <div *ngIf="universitario">
-    <div class="form-group">
-        <label for="centroUniversitario">Nombre del centro</label>
-        <input type="text" name="centroUniversitario" id="centroUniversitario" formControlName="centroUniversitario">
-      </div>
     <div class="form-group">
       <label for="titulo">Título</label>
       <input type="text" name="titulo" id="titulo" formControlName="titulo">
     </div>
-    <div class="form-group">
-      <label for="fechaUniversidad">Fecha del título</label>
-      <input type="text" name="fechaUniversidad" id="fechaUniversidad" formControlName="fechaUniversidad">
-    </div>
-    <div class="form-group">
-      <label for="bilingue">Formación bilingüe</label>
-      <input type="text" name="bilingue" id="bilingue" formControlName="bilingue">
-    </div>
-    <div class="form-group">
-        <label for="myFile">Certificado</label>
-        <input type="file" name="myFile">
-    </div>
   </div>
   <!-- ciclo -->
   <div *ngIf="ciclo">
-    <div class="form-group">
-      <label for="centroEducativo">Centro educativo</label>
-      <input type="text" name="centroEducativo" id="centroEducativo" formControlName="centroEducativo">
-    </div>
     <div class="form-group">
         <label for="familia">Familia profesional</label>
         <input type="text" name="familia" id="familia" formControlName="familia">
@@ -49,16 +46,8 @@
       <input type="text" name="ciclo" id="ciclo" formControlName="ciclo">
     </div>
     <div class="form-group">
-        <label for="fechaCiclo">Fecha de obtención del título</label>
-        <input type="text" name="fechaCiclo" id="fechaCiclo" formControlName="fechaCiclo">
-    </div>
-    <div class="form-group">
       <label for="dual">Formación dual</label>
-      <input type="text" name="dual" id="dual" formControlName="dual">
-    </div>
-    <div class="form-group">
-        <label for="cicloBilingue">Formación bilingüe</label>
-        <input type="text" name="cicloBilingue" id="cicloBilingue" formControlName="cicloBilingue">
+      <input type="checkbox" name="dual" id="dual" formControlName="dual">
     </div>
     <div class="form-group">
         <label for="myFile">Certificado</label>
