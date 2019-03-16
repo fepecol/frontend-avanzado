@@ -18,12 +18,12 @@ export class User {
     fechaNacimiento: string;
     telefono: string;
     telefono2: string;
-    dni: string;
+    tipoDocumento: string;
+    numeroDocumento: string;
     descripcion: string;
     competencias: string;
     carnets: string;
     password: string;
-    tipoDocumento: tipoDocumento;
     direccion: string;
     municipio: string;
     provincia: string;

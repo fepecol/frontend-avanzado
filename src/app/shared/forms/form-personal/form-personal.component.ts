@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { User } from '../../models/user';
 import { UsersService } from '../../services/users.service';
 
@@ -24,8 +24,8 @@ export class FormPersonalComponent implements OnInit {
       fechaNacimiento: new FormControl(this.datos_personales.fechaNacimiento,[Validators.pattern('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}')]),
       telefono: new FormControl(this.datos_personales.telefono),
       telefono2: new FormControl(this.datos_personales.telefono2),
-      dni: new FormControl(this.datos_personales.dni),
-      tipoDocumento: new FormControl(this.datos_personales.tipoDocumento),/*AQUI VA VALIDACION CUSTOM PARA DNI O PASAPORTE*/
+      numeroDocumento: new FormControl(this.datos_personales.numeroDocumento,[this.dniValidator]),
+      tipoDocumento: new FormControl(this.datos_personales.tipoDocumento),
       direccion: new FormControl(this.datos_personales.direccion),
       provincia: new FormControl(this.datos_personales.provincia),
       municipio: new FormControl(this.datos_personales.municipio),
@@ -42,6 +42,48 @@ export class FormPersonalComponent implements OnInit {
     this.usersservice.updateUser(this.user).subscribe(res => {
       this.edit.emit(true);
     });
+  }
+
+  dniValidator(control: FormControl){
+    let documento=control.value;
+    if(documento){
+      let validDocument=false;
+
+      /*comprobar dni*/
+      let numero, letr, letra, expresion_regular_dni, expresion_regular_pasaporte;
+    
+      expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
+      expresion_regular_pasaporte = /^[a-z]{3}[0-9]{6}[a-z]?$/;
+    
+      if(expresion_regular_dni.test (documento) == true){
+        numero = documento.substr(0,documento.length-1);
+        letr = documento.substr(documento.length-1,1);
+        numero = numero % 23;
+        letra='TRWAGMYFPDXBNJZSQVHLCKET';
+        letra=letra.substring(numero,numero+1);
+        if (letra!=letr.toUpperCase()) {
+          console.log('Dni erroneo, la letra del NIF no se corresponde');
+        }else{
+          validDocument=true;
+          console.log('Dni correcto');
+        }
+      }
+      /*validar pasaporte */
+      if(expresion_regular_pasaporte.test (documento) == true){
+        validDocument=true;
+      }
+      /*comprobar dni*/
+      if(!validDocument){
+        //si dni incorrecto devuelvo un objeto
+        return {
+          numeroDocument: {
+            parsedDocument: document
+          }
+        }
+      }
+    }
+    //si dni correcto devuelvo null
+    return null;
   }
 
 }
