@@ -1,3 +1,4 @@
+<a [routerLink]="['/admin/dashboard']" [queryParams]="{ userId: userId}">dashboard</a>
 <div *ngIf="profileUser">
  <div *ngIf="!edit else editBlock">
     <div id="datos-personales">
@@ -21,7 +22,7 @@
             </tr>
             <tr>
               <td>NIF/NIE</td>
-              <td>{{datos_personales.dni}}</td>
+              <td>{{datos_personales.numeroDocumento}}</td>
             </tr>
             <tr>
               <td>Permisos de conducir</td>
@@ -32,6 +33,8 @@
         <div class="col-3">
           <p>Acerca de mi...</p>
           <p>{{datos_personales.descripcion}}</p>
+          <p>Dirección:</p>
+          <p>{{datos_personales.direccion}}</p>
         </div>
         <div class="col-3">
           <p>Otras competencias</p>

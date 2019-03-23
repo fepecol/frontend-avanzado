@@ -54,6 +54,8 @@ export class ProfileComponent implements OnInit {
       });
     }
     if(this.empresaId!=undefined){
+      /*pongo 1 en userId hasta que tenga la navegacion correcta entre pantallas*/
+      this.userId=1;
       this.profileEmpresa=true;
       this.empresasservice.getEmpresa(this.empresaId).subscribe(empresa => {
         console.log(empresa);

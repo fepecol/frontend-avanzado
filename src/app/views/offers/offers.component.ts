@@ -42,6 +42,7 @@ export class OffersComponent implements OnInit {
       })
     }
     if(this.empresaId!=undefined){
+      this.userId=1;
       this.empresaProfile=true;
       console.log('empresa',this.empresaId);
       this.titulo="Mis ofertas publicadas";

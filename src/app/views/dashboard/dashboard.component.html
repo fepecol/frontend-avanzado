@@ -1,23 +1,10 @@
-<form [formGroup]="configForm" (ngSubmit)="submit()">
-  <div class="form-group"> 
-    <label>Idioma</label>
-    <select (change)="tipoTitulo($event.target.value)">
-      <option value="es" ng-selected="selected">Español</option>
-      <option value="ca">Catalan</option>
-      <option value="en">Inglés</option>
-    </select>
-  </div>
-  <div class="form-group">
-      <label formArrayName="orders" *ngFor="let order of configForm.controls.orders.controls; let i = index">
-        <input type="checkbox" [formControlName]="i">
-        {{orders[i].name}}
-      </label>
-  </div>
-  <div class="form-group">
-      <label formArrayName="notificaciones" *ngFor="let order of configForm.controls.notificaciones.controls; let i = index">
-        <input type="checkbox" [formControlName]="i">
-        {{provincias[i].provincia}} {{i}} {{provincias[i].id}} <br>
-      </label>
-  </div>
-<button type="submit" [disabled]="!configForm.valid" class="btn btn-secondary">Guardar</button>
-</form>
+
+<div class="menu">
+  <ul>
+      <li><a [routerLink]="['/admin/dashboard']" [queryParams]="{ userId: userId}">dashboard</a></li>
+      <li><a [routerLink]="['/admin/profile']" [queryParams]="{ userId: userId}">profile user</a></li>
+      <li><a [routerLink]="['/admin/profile']" [queryParams]="{ empresaId: 1}">profile empresa</a></li>
+      <li><a [routerLink]="['/admin/offers']" [queryParams]="{ userId: userId}">offers user</a></li>
+      <li><a [routerLink]="['/admin/offers']" [queryParams]="{ empresaId: 1}">offers empresa</a></li>
+  </ul>
+</div>

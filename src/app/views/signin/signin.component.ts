@@ -38,7 +38,7 @@ export class SigninComponent implements OnInit {
         }
       });
       if(access){
-        this._route.navigate(['/admin/profile'],{queryParams: {userId} });
+        this._route.navigate(['/admin/dashboard'],{queryParams: {userId} });
       }else{
         alert('Error usuario o contraseña incorrectos');
       }
