@@ -8,6 +8,12 @@ http://localhost:4200/forgot-password
 email: admin@uoc.com
 password: 1234
 
+# Pantalla LOGIN
+http://localhost:4200/signin
+
+# Pantalla DASHBOARD
+http://localhost:4200/admin/dashboard?userId=1
+
 # Pantalla PROFILE estudiante
 http://localhost:4200/admin/profile?userId=1
 
@@ -21,7 +27,7 @@ http://localhost:4200/admin/offers?userId=1
 http://localhost:4200/admin/offers?empresaId=1
 
 # pantalla CONFIGURACIÓN
-http://localhost:4200/admin/dashboard
+http://localhost:4200/admin/configuration
 
 # UOCJob
 
