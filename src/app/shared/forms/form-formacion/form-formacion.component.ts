@@ -38,7 +38,7 @@ export class FormFormacionComponent implements OnInit {
       bilingue: new FormControl(this.formacion.bilingue),
       titulo: new FormControl(this.formacion.titulo),
       familia: new FormControl(this.formacion.familia),
-      grado: new FormControl(this.formacion.bilingue),
+      grado: new FormControl(this.formacion.grado),
       tipoTitulo: new FormControl(this.formacion.tipoTitulo),
       ciclo: new FormControl(this.formacion.ciclo),
       dual: new FormControl(this.formacion.dual),

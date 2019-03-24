@@ -29,11 +29,16 @@ export class User {
     provincia: string;
   };
   formacion_academica: {
-    nivel: nivelAcademico;
-    titulo: string;
     centro: string;
     fecha: string;
+    bilingue: string;
     certificado: string;
+    titulo: string;
+    familia: string;
+    grado: string;
+    ciclo: string;
+    dual: string;
+    tipoTitulo: string;
   };
   experiencia_laboral:{
     entities:[{  

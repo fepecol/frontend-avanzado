@@ -27,7 +27,7 @@ export class FormIdiomasComponent implements OnInit {
       idioma: new FormControl(this.idioma.idioma),
       otroIdioma: new FormControl(''),
       nivel: new FormControl(this.idioma.nivel),
-      fecha: new FormControl(this.idioma.fecha)
+      fecha: new FormControl(this.idioma.fecha,[Validators.pattern('^[0-9]{2}[/][0-9]{2}[/][0-9]{4}')])
     });
   }
 

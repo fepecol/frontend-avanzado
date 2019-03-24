@@ -1,3 +1,4 @@
+<img src="../../../assets/img/user.png" width="200px">
 <form [formGroup]="editForm" (ngSubmit)="submit()">
   <div class="form-group">
     <label for="nombre">Nombre</label>
@@ -6,7 +7,7 @@
     <input type="text" name="apellidos" id="apellidos" formControlName="apellidos">
   </div>
   <div class="form-group">
-    <label for="fechaNacimiento">FNacimiento</label>
+    <label for="fechaNacimiento">Fecha nacimiento</label>
     <input type="text" name="fechaNacimiento" id="fechaNacimiento" formControlName="fechaNacimiento">
   </div>
   <div class="form-group">
@@ -22,7 +23,7 @@
       <option value="pasaporte">Pasaporte</option>
       <option value="otro">Otro</option>
     </select>
-    <label for="numeroDocumento">Número</label>
+    <label for="numeroDocumento">Número de documento</label>
     <input type="text" name="numeroDocumento" id="numeroDocumento" formControlName="numeroDocumento">
   </div>
   <div class="form-group">

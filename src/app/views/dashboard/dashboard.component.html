@@ -2,9 +2,11 @@
 <div class="menu">
   <ul>
       <li><a [routerLink]="['/admin/dashboard']" [queryParams]="{ userId: userId}">dashboard</a></li>
-      <li><a [routerLink]="['/admin/profile']" [queryParams]="{ userId: userId}">profile user</a></li>
+      <li><a [routerLink]="['/admin/profile']" [queryParams]="{ userId: userId}">profile estudiante</a></li>
       <li><a [routerLink]="['/admin/profile']" [queryParams]="{ empresaId: 1}">profile empresa</a></li>
-      <li><a [routerLink]="['/admin/offers']" [queryParams]="{ userId: userId}">offers user</a></li>
+      <li><a [routerLink]="['/admin/offers']" [queryParams]="{ userId: userId}">offers estudiante</a></li>
       <li><a [routerLink]="['/admin/offers']" [queryParams]="{ empresaId: 1}">offers empresa</a></li>
+      <li><a [routerLink]="['/admin/configuration']" [queryParams]="{ userId: userId}">configuration</a></li>
+      <li><a [routerLink]="['/signin']">logout</a></li>
   </ul>
 </div>
