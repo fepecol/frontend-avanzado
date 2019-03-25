@@ -47,8 +47,13 @@ export const rootRouterConfig: Routes = [
       },
       {
         path: 'offers',
-        loadChildren: './views/offers.module#OffersModule',
+        loadChildren: './views/offers/offers.module#OffersModule',
         data: { title: 'Offers', breadcrumb: 'Offers' }
+      },
+      {
+        path: 'configuration',
+        loadChildren: './views/configuration/configuration.module#ConfigurationModule',
+        data: { title: 'Configuration', breadcrumb: 'Configuration' }
       }
     ]
   },

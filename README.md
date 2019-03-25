@@ -1,3 +1,34 @@
+# URL de las pantallas
+
+# Pantalla LOGIN y REMEMBER PASSWORD
+http://localhost:4200/signin
+http://localhost:4200/forgot-password
+
+# usuario admin 
+email: admin@uoc.com
+password: 1234
+
+# Pantalla LOGIN
+http://localhost:4200/signin
+
+# Pantalla DASHBOARD
+http://localhost:4200/admin/dashboard?userId=1
+
+# Pantalla PROFILE estudiante
+http://localhost:4200/admin/profile?userId=1
+
+# Pantalla PROFILE empresa
+http://localhost:4200/admin/profile?empresaId=1
+
+# Pantalla JOB OFFERS estudiante
+http://localhost:4200/admin/offers?userId=1
+
+# Pantalla JOB OFFERS empresa
+http://localhost:4200/admin/offers?empresaId=1
+
+# pantalla CONFIGURACIÓN
+http://localhost:4200/admin/configuration
+
 # UOCJob
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.

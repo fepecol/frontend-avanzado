@@ -1,0 +1,62 @@
+<form [formGroup]="formacionForm" (ngSubmit)="submit()">
+  <div class="form-group"> 
+    <label for="tipoTitulo">Tipo de título</label>
+    <select name="tipoTitulo" id="tipoTitulo" formControlName="tipoTitulo" (change)="tipoTitulo($event.target.value)">
+      <option value="uni">Título universitario</option>
+      <option value="ciclo">Ciclo formativo</option>
+      <option value="otro">Otro</option>
+    </select>
+  </div>
+  <!-- comun -->
+  <div class="form-group">
+    <label for="centro">Centro</label>
+    <input type="text" name="centro" id="centro" formControlName="centro">
+  </div>
+  <div class="form-group">
+    <label for="fecha">Fecha del título</label>
+    <input type="text" name="fecha" id="fecha" formControlName="fecha">
+  </div>
+  <div class="form-group">
+    <label for="bilingue">Formación bilingüe</label>
+    <input type="checkbox" name="bilingue" id="bilingue" formControlName="bilingue">
+  </div>
+  <div class="form-group">
+    <label for="myFile">Certificado</label>
+    <input type="file" name="myFile">
+  </div>
+  <!-- universidad -->
+  <div *ngIf="universitario">
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input type="text" name="titulo" id="titulo" formControlName="titulo">
+    </div>
+  </div>
+  <!-- ciclo -->
+  <div *ngIf="ciclo">
+    <div class="form-group">
+        <label for="familia">Familia profesional</label>
+        <input type="text" name="familia" id="familia" formControlName="familia">
+    </div>
+    <div class="form-group">
+      <label for="grado">Grado</label>
+      <select name="grado" id="grado" formControlName="grado">
+          <option value="superior">Grado Superior</option>
+          <option value="medio">Grado Medio</option>
+          <option value="basica">FP Básica</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="ciclo">Ciclo</label>
+      <input type="text" name="ciclo" id="ciclo" formControlName="ciclo">
+    </div>
+    <div class="form-group">
+      <label for="dual">Formación dual</label>
+      <input type="checkbox" name="dual" id="dual" formControlName="dual">
+    </div>
+    <div class="form-group">
+        <label for="myFile">Certificado</label>
+        <input type="file" name="myFile">
+    </div>
+  </div> 
+  <button type="submit" [disabled]="!formacionForm.valid" class="btn btn-secondary">Guardar</button>
+</form>
