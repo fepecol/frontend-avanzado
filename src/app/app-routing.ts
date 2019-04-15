@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 /* import { AdminLayoutComponent } from './shared/components/layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './shared/components/layouts/auth-layout/auth-layout.component';
 import { AuthGuard } from './shared/services/auth/auth.guard'; */
@@ -27,7 +28,7 @@ export const rootRouterConfig: Routes = [
   },
   {
     path: 'admin',
-    /*  component: AdminLayoutComponent, */
+    component: AdminLayoutComponent,
     /* canActivate: [AuthGuard], */
     children: [
       {
@@ -49,11 +50,6 @@ export const rootRouterConfig: Routes = [
         path: 'offers',
         loadChildren: './views/offers/offers.module#OffersModule',
         data: { title: 'Offers', breadcrumb: 'Offers' }
-      },
-      {
-        path: 'configuration',
-        loadChildren: './views/configuration/configuration.module#ConfigurationModule',
-        data: { title: 'Configuration', breadcrumb: 'Configuration' }
       }
     ]
   },
