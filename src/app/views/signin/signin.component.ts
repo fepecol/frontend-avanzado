@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SigninService } from './signin.service';
 import { ProfileService } from 'src/app/shared/services/profile.service';
+import { GetAccess } from '../../shared/store/actions/user.actions';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from '../../shared/store/state/app.state';
 
 @Component({
   selector: 'app-signin',
@@ -17,7 +20,8 @@ export class SigninComponent implements OnInit {
     private signinService: SigninService,
     private profileService: ProfileService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private _store: Store<IAppState>
   ) {}
 
   ngOnInit() {
@@ -30,13 +34,15 @@ export class SigninComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    this.signinService.login({ ...this.loginForm.value }).then(user => {
-      if (!user) {
-        this.errorLogin = true;
-        return;
-      }
-      this.profileService.user = user;
-      this.router.navigate(['admin/dashboard']);
-    });
+    this._store.dispatch(new GetAccess({ ...this.loginForm.value }));
+    
+    // this.signinService.login({ ...this.loginForm.value }).then(user => {
+    //   if (!user) {
+    //     this.errorLogin = true;
+    //     return;
+    //   }
+    //   this.profileService.user = user;
+    //   this.router.navigate(['admin/dashboard']);
+    // });
   }
 }
