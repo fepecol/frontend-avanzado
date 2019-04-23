@@ -7,12 +7,12 @@ export const userReducers = (
   action: UserActions
 ): IUserState => {
   switch (action.type) {
-    case EUserActions.GetAccessSuccess: {
+    /*case EUserActions.GetAccessSuccess: {
       return {
         ...state,
         users: action.payload
       };
-    }
+    }*/
 
     default:
       return state;

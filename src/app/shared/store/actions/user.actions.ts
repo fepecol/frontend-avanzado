@@ -10,12 +10,12 @@ export enum EUserActions {
 
 export class GetAccess implements Action {
     public readonly type = EUserActions.GetAccess;
-    constructor(public payload: {email, password}) {}
+    constructor(public payload: {email: string, password: string}) {}
 }
 
 export class GetAccessSuccess implements Action {
     public readonly type = EUserActions.GetAccessSuccess;
-    constructor(public payload: User[]) {}
+    constructor(public payload: User) {}
 }
 
 export type UserActions = GetAccess | GetAccessSuccess;
