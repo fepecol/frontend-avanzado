@@ -14,3 +14,8 @@ export const selectSelectedUser = createSelector(
   selectUsers,
   (state: IUserState) => state.selectedUser
 );
+
+export const error = createSelector(
+  selectUsers,
+  (state: IUserState) => state.error
+);

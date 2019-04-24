@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ProfileService } from 'src/app/shared/services/profile.service';
 import { SigninService } from '../signin/signin.service';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from '../../shared/store/state/app.state';
+import { selectSelectedUser } from '../../shared/store/selectors/user.selector';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +11,12 @@ import { SigninService } from '../signin/signin.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  constructor() {}
+  
+  user$ = this._store.pipe(select(selectSelectedUser));
+
+  constructor(
+    private _store: Store<IAppState>
+  ) {}
 
   /*   constructor(
     private profileService: ProfileService,

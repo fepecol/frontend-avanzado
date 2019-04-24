@@ -7,12 +7,20 @@ export const userReducers = (
   action: UserActions
 ): IUserState => {
   switch (action.type) {
-    /*case EUserActions.GetAccessSuccess: {
+    case EUserActions.GetAccessError: {
       return {
         ...state,
-        users: action.payload
+        error: 'Usuario o contraseña incorrectos'
       };
-    }*/
+    }
+
+    case EUserActions.GetAccessSuccess: {
+      return {
+        ...state,
+        selectedUser: action.payload,
+        error: null
+      };
+    }
 
     default:
       return state;

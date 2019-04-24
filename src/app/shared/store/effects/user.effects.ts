@@ -8,7 +8,8 @@ import { IAppState } from '../state/app.state';
 import {
   GetAccess,
   GetAccessSuccess,
-  EUserActions
+  EUserActions,
+  GetAccessError
 } from '../actions/user.actions';
 import { SigninService } from '../../../views/signin/signin.service';
 import { selectUserList } from '../selectors/user.selector';
@@ -26,7 +27,7 @@ export class UserEffects {
     })
   );*/
 
-  @Effect({dispatch:false})
+  @Effect()
   GetAccess$ = this._actions$.pipe(
     ofType<GetAccess>(EUserActions.GetAccess),
     map((action) => action.payload),
@@ -35,8 +36,11 @@ export class UserEffects {
       .pipe(
         switchMap(user => {
         console.log(user);
-        this.router.navigate(['admin/dashboard'])
-        return of(new GetAccessSuccess(user))
+        if(user !== undefined){
+          return of(new GetAccessSuccess(user))
+        }else{
+          return of(new GetAccessError())
+        }
         })
     )})
   );

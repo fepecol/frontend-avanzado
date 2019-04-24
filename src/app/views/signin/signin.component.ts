@@ -6,6 +6,8 @@ import { ProfileService } from 'src/app/shared/services/profile.service';
 import { GetAccess } from '../../shared/store/actions/user.actions';
 import { Store, select } from '@ngrx/store';
 import { IAppState } from '../../shared/store/state/app.state';
+import { selectSelectedUser, error } from '../../shared/store/selectors/user.selector';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-signin',
@@ -13,6 +15,7 @@ import { IAppState } from '../../shared/store/state/app.state';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
+  error$ : Observable<string>;
   loginForm: FormGroup;
   submitted = false;
   errorLogin = false;
@@ -22,7 +25,9 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private _store: Store<IAppState>
-  ) {}
+  ) {
+    this.error$ = _store.pipe(select(error));
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
