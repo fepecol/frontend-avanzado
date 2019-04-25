@@ -11,6 +11,11 @@ import {
   Province
 } from 'src/app/shared/models/user.model';
 import { documentNumberValidator } from 'src/app/shared/directives/document-number-validator.directive';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from '../../../../shared/store/state/app.state';
+import { selectSelectedUser } from '../../../../shared/store/selectors/user.selector';
+import { async } from 'q';
 
 @Component({
   selector: 'app-profile-account',
@@ -20,12 +25,19 @@ import { documentNumberValidator } from 'src/app/shared/directives/document-numb
 export class ProfileAccountComponent implements OnInit {
   rForm: FormGroup;
   user: User;
+  //user$: Observable<User>;
   documentsType: DocumentType[];
   municipes: Municipe[];
   provinces: Province[];
 
-  constructor(private router: Router, private profileService: ProfileService) {
+  constructor(
+    private router: Router, 
+    private profileService: ProfileService,
+    private _store: Store<IAppState>
+    ) {
     this.user = this.profileService.user;
+    //this.user$ = _store.pipe(select(selectSelectedUser));
+    //console.log(_store.select(selectSelectedUser));
   }
   ngOnInit() {
     this.loadSelectProperties();

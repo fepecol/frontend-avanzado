@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '../../../shared/services/profile.service';
-import { User } from 'src/app/shared/models/user.model';
+import { User } from '../../../shared/models/user.model';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from '../../../shared/store/state/app.state';
+import { Observable } from 'rxjs';
+import { selectSelectedUser } from '../../../shared/store/selectors/user.selector';
 
 @Component({
   selector: 'app-profile-student',
@@ -9,8 +13,13 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class ProfileStudentComponent {
   user: User;
-  constructor(private profileService: ProfileService) {
-    this.user = this.profileService.user;
+  user$: Observable<User>;
+  constructor(
+    private profileService: ProfileService,
+    private _store: Store<IAppState>
+    ) {
+    this.user$ = _store.pipe(select(selectSelectedUser));
+    //this.user = this.profileService.user;
   }
 
   deleteStudy(studyID: number) {

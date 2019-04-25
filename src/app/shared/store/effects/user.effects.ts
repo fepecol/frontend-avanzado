@@ -12,20 +12,12 @@ import {
   GetAccessError
 } from '../actions/user.actions';
 import { SigninService } from '../../../views/signin/signin.service';
+import { ProfileService } from '../../../shared/services/profile.service';
 import { selectUserList } from '../selectors/user.selector';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class UserEffects {
-
-  /*@Effect()
-  GetAccess$ = this._actions$.pipe(
-    ofType<GetAccess>(EUserActions.GetAccess),
-    //falta pasarle parametros
-    switchMap(() => this._signinService.login2()),
-    switchMap(res => {return of(new GetAccessSuccess(res));
-    })
-  );*/
 
   @Effect()
   GetAccess$ = this._actions$.pipe(
@@ -35,7 +27,6 @@ export class UserEffects {
       return from(this._signinService.login2(payload.email, payload.password))
       .pipe(
         switchMap(user => {
-        console.log(user);
         if(user !== undefined){
           return of(new GetAccessSuccess(user))
         }else{
@@ -54,6 +45,7 @@ export class UserEffects {
 
   constructor(
     private _signinService: SigninService,
+    private _profileService: ProfileService,
     private _actions$: Actions,
     private _store: Store<IAppState>,
     private router: Router,
