@@ -22,6 +22,14 @@ export const userReducers = (
       };
     }
 
+    case EUserActions.ModifyAccountSuccess: {
+      return {
+        ...state,
+        selectedUser: action.payload,
+        error: null
+      };
+    }
+
     default:
       return state;
   }

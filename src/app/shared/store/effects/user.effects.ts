@@ -9,7 +9,9 @@ import {
   GetAccess,
   GetAccessSuccess,
   EUserActions,
-  GetAccessError
+  GetAccessError,
+  ModifyAccount,
+  ModifyAccountSuccess
 } from '../actions/user.actions';
 import { SigninService } from '../../../views/signin/signin.service';
 import { ProfileService } from '../../../shared/services/profile.service';
@@ -41,6 +43,23 @@ export class UserEffects {
     ofType<GetAccessSuccess>(EUserActions.GetAccessSuccess),
     tap((user)=>console.log(user)),
     switchMap(() => this.router.navigate(['admin/dashboard']))
+  );
+
+  @Effect()
+  ModifyAccount$ = this._actions$.pipe(
+    ofType<ModifyAccount>(EUserActions.ModifyAccount),
+    map((action) => action.payload),
+    tap(payload => this._profileService.updateProfile(payload)),
+    switchMap(payload => {
+      return of(new ModifyAccountSuccess(payload))
+    }),
+  );
+
+  @Effect({dispatch:false})
+  ModifyAccountSuccess$ = this._actions$.pipe(
+    ofType<ModifyAccountSuccess>(EUserActions.ModifyAccountSuccess),
+    tap((user)=>console.log(user)),
+    switchMap(() => this.router.navigate(['admin/profile']))
   );
 
   constructor(

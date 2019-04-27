@@ -16,6 +16,7 @@ import { Store, select } from '@ngrx/store';
 import { IAppState } from '../../../../shared/store/state/app.state';
 import { selectSelectedUser } from '../../../../shared/store/selectors/user.selector';
 import { async } from 'q';
+import { ModifyAccount } from '../../../../shared/store/actions/user.actions';
 
 @Component({
   selector: 'app-profile-account',
@@ -25,7 +26,7 @@ import { async } from 'q';
 export class ProfileAccountComponent implements OnInit {
   rForm: FormGroup;
   user: User;
-  //user$: Observable<User>;
+  user$: Observable<User>;
   documentsType: DocumentType[];
   municipes: Municipe[];
   provinces: Province[];
@@ -35,8 +36,9 @@ export class ProfileAccountComponent implements OnInit {
     private profileService: ProfileService,
     private _store: Store<IAppState>
     ) {
-    this.user = this.profileService.user;
-    //this.user$ = _store.pipe(select(selectSelectedUser));
+    //this.user = this.profileService.user;
+    this.user$ = _store.pipe(select(selectSelectedUser));
+    this.user$.subscribe((res)=> {this.user=res});
     //console.log(_store.select(selectSelectedUser));
   }
   ngOnInit() {
@@ -102,9 +104,10 @@ export class ProfileAccountComponent implements OnInit {
 
   public save() {
     const user = { ...this.profileService.user, ...this.rForm.value };
-    this.profileService.user = user;
+    this._store.dispatch(new ModifyAccount(user));
+    /*this.profileService.user = user;
     this.profileService.updateProfile(user);
-    this.router.navigate(['/admin/profile']);
+    this.router.navigate(['/admin/profile']);*/
   }
   compareByUID(option1, option2) {
     return option1.uid === (option2 && option2.uid);

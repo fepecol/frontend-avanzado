@@ -12,8 +12,6 @@ import { selectSelectedUser } from '../../shared/store/selectors/user.selector';
 })
 export class DashboardComponent {
   
-  user$ = this._store.pipe(select(selectSelectedUser));
-
   constructor(
     private _store: Store<IAppState>
   ) {}
