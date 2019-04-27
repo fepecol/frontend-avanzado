@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UsersService } from '../../shared/services/users.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SigninService } from './signin.service';
+import { ProfileService } from 'src/app/shared/services/profile.service';
+import { GetAccess } from '../../shared/store/actions/user.actions';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from '../../shared/store/state/app.state';
+import { selectSelectedUser, error } from '../../shared/store/selectors/user.selector';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-signin',
@@ -9,39 +15,39 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  
+  error$ : Observable<string>;
   loginForm: FormGroup;
-
-  constructor(private usersservice: UsersService, private _route: Router) {  
+  submitted = false;
+  errorLogin = false;
+  constructor(
+    private signinService: SigninService,
+    private profileService: ProfileService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private _store: Store<IAppState>
+  ) {
+    this.error$ = _store.pipe(select(error));
   }
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      email: new FormControl('',[Validators.required, Validators.email]),
-      password: new FormControl('',[Validators.required])
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required]
     });
   }
 
-  submit() {
-    this.getAcces(this.loginForm.value.email, this.loginForm.value.password);
-  }
+  onSubmit() {
+    this.submitted = true;
 
-  getAcces(email, password){
-    this.usersservice.getUsers().subscribe(users => {
-      let access=false;
-      let userId=0;
-      console.log(users);
-      users.forEach(function(user) {
-        if(user.datos_personales.email==email && user.datos_personales.password==password){
-          access=true;
-          userId=user.id;
-        }
-      });
-      if(access){
-        this._route.navigate(['/admin/dashboard'],{queryParams: {userId} });
-      }else{
-        alert('Error usuario o contraseña incorrectos');
-      }
-    });
+    this._store.dispatch(new GetAccess({ ...this.loginForm.value }));
+    
+    // this.signinService.login({ ...this.loginForm.value }).then(user => {
+    //   if (!user) {
+    //     this.errorLogin = true;
+    //     return;
+    //   }
+    //   this.profileService.user = user;
+    //   this.router.navigate(['admin/dashboard']);
+    // });
   }
 }

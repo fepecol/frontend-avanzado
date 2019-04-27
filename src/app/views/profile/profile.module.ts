@@ -1,29 +1,24 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { FormPersonalComponent } from '../../shared/forms/form-personal/form-personal.component';
-import { FormExperienciaComponent } from '../../shared/forms/form-experiencia/form-experiencia.component';
-import { FormFormacionComponent } from '../../shared/forms/form-formacion/form-formacion.component';
-import { FormIdiomasComponent } from '../../shared/forms/form-idiomas/form-idiomas.component';
-import { FormEmpresaComponent } from '../../shared/forms/form-empresa/form-empresa.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { ProfileStudentComponent } from './profile-student/profile-student.component';
+import { ProfileStudyComponent } from './profile-student/study/profile-study.component';
+import { VocationalFormComponent } from './profile-student/study/vocational-form/vocational-form.component';
+import { UniversityDegreeComponent } from './profile-student/study/university-degree-form/university-degree-form.component';
+import { ProfileLanguageComponent } from './profile-student/language/profile-language.component';
+import { ProfileAccountComponent } from './profile-student/account/profile-account.component';
 
 @NgModule({
   declarations: [
-    ProfileComponent, 
-    FormPersonalComponent, 
-    FormExperienciaComponent, 
-    FormFormacionComponent,
-    FormIdiomasComponent,
-    FormEmpresaComponent
+    ProfileComponent,
+    ProfileStudentComponent,
+    ProfileStudyComponent,
+    VocationalFormComponent,
+    UniversityDegreeComponent,
+    ProfileLanguageComponent,
+    ProfileAccountComponent
   ],
-  imports: [
-    CommonModule,
-    ProfileRoutingModule, 
-    FormsModule,
-    ReactiveFormsModule
-  ]
+  imports: [SharedModule, ProfileRoutingModule]
 })
-export class ProfileModule { }
+export class ProfileModule {}

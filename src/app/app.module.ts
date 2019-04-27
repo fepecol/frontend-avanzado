@@ -4,27 +4,34 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './shared/core.module';
 import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app-routing';
-
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './shared/inmemory-db/inmemory-db.service';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule  } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UsersService } from './shared/services/users.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { FakeBackendService } from './shared/inmemory-db/fake-backend.service';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './shared/store/reducers';
+import { UserEffects } from './shared/store/effects/user.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+import { SigninService } from './views/signin/signin.service';
 
 @NgModule({
   imports: [
     SharedModule,
     CoreModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
-    BrowserModule,
-    FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    HttpClientInMemoryWebApiModule.forRoot(FakeBackendService, {
+      dataEncapsulation: false
+    }),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([UserEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot({stateKey:'router'})
   ],
   declarations: [AppComponent],
-  providers: [UsersService],
+  providers: [SigninService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

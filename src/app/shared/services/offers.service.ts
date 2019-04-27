@@ -1,44 +1,25 @@
 import { Injectable } from '@angular/core';
+import { AppSettings } from '../app.settings';
 import { HttpClient } from '@angular/common/http';
-import { Offer } from '../models/offer';
+import { of, Observable } from 'rxjs';
+import { Offer } from '../models/offer.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class OffersService {
+  private _offers: Offer[] = [{}] as Offer[];
 
-  base_url: string = 'http://mybackend.com/api/';
-  endpoint = 'offers';
+  constructor(
+    private http: HttpClient /* , private store$: Store<AppStore> */
+  ) {}
 
-  constructor(private http: HttpClient) {}
+  set offers(_offers) {
+    this._offers = _offers;
+  }
+  get offers() {
+    return this._offers;
+  }
 
-  //Gets all Offers
   getOffers() {
-      return this.http
-      .get<Offer[]>(this.base_url + this.endpoint);
-  } //getOffers
-
-  getOffer(offerId) {
-    return this.http
-    .get<Offer>(`${this.base_url + this.endpoint}/${offerId}`);
-  } //getOffers
-
-  //Creates a task
-  createOffer(offer) {
-    return this.http
-    .post<any>(this.base_url + this.endpoint, offer);
-  } //createOffers
-
-  //Updates a Offers
-  updateOffer(update) {
-      return this.http
-      .put<any>(this.base_url + this.endpoint, update);
-  } //updateOffers
-
-  //Deletes a Offers
-  deleteOffer(OfferId) {
-      return this.http
-      .delete<any>(`${this.base_url + this.endpoint}/${OfferId}`);
-  } //deleteOffers
-
+    return this.http.get<any>(AppSettings.API_ENDPOINT_OFFERS);
+  }
 }

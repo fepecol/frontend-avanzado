@@ -3,16 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { OffersRoutingModule } from './offers-routing.module';
 import { OffersComponent } from './offers.component';
-import { FormDetailComponent } from '../../shared/forms/form-detail/form-detail.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { OffersDetailComponent } from './offers-detail/offers-detail.component';
+import { OffersListComponent } from './offers-list/offers-list.component';
+import { OffersProfileComponent } from './offers-profile/offers-profile.component';
 
 @NgModule({
-  declarations: [OffersComponent, FormDetailComponent],
-  imports: [
-    CommonModule,
-    OffersRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
-  ]
+  declarations: [
+    OffersComponent,
+    OffersProfileComponent,
+    OffersListComponent,
+    OffersDetailComponent
+  ],
+  imports: [CommonModule, OffersRoutingModule]
 })
-export class OffersModule { }
+export class OffersModule {}

@@ -1,55 +1,6 @@
-<a [routerLink]="['/admin/dashboard']" [queryParams]="{ userId: userId}">dashboard</a>
-<div *ngIf="!detail else detailBlock">
-    <div class="row">
-      <div class="col-7">
-        <h1>{{titulo}}</h1>
-      </div>
-      <div *ngIf="!empresaProfile" class="col-3">
-        <button (click)="getMyOffers()" class="btn btn-secondary">Mis ofertas</button>
-        <button (click)="getOffers()" class="btn btn-secondary">Listado ofertas</button>
-      </div>
-    </div>
-    <table *ngIf="!empresaProfile" class="table table-striped">
-      <tr>
-        <th>Puesto</th>
-        <th>Empresa</th>
-        <th>Familia profesional</th>
-        <th>Fecha</th>
-        <th>Provincia</th>
-        <th *ngIf="viewMyOffers">Estado</th>
-      </tr>
-      <tr *ngFor="let item of offers; index as i;" (click)="detalle(item)">
-        <td>{{item.puesto}}</td>
-        <td>{{item.empresa}}</td>
-        <td>{{item.familia}}</td>
-        <td>{{item.fecha}}</td>
-        <td>{{item.provincia}}</td>
-        <td *ngIf="viewMyOffers">{{item.estado}}</td>
-      </tr>
-    </table>
-    <table *ngIf="empresaProfile" class="table table-striped">
-        <tr>
-          <th>Puesto</th>
-          <th>Empresa</th>
-          <th>Familia profesional</th>
-          <th>Fecha</th>
-          <th>Provincia</th>
-          <th>Estado</th>
-          <th></th>
-        </tr>
-        <tr *ngFor="let item of offers; index as i;">
-          <td>{{item.puesto}}</td>
-          <td>{{item.empresa}}</td>
-          <td>{{item.familia}}</td>
-          <td>{{item.fecha}}</td>
-          <td>{{item.provincia}}</td>
-          <td>{{item.estado}}</td>
-          <td><button (click)="editOffer(item,i)" class="btn btn-secondary editar">Editar</button></td>
-        </tr>
-      </table>
-      <button *ngIf="empresaProfile" (click)="newOffer()" class="btn btn-secondary editar">Nueva</button>
-</div>
-<ng-template #detailBlock>
-  edit block
-  <app-form-detail [offer]="offer" [borrar]="viewMyOffers" [empresa]="empresa" [empresaProfile]="empresaProfile" (edit)=onEdit($event)></app-form-detail>
-</ng-template>
+<h2>
+  Offers
+</h2>
+
+<app-offers-list *ngIf="isOffersList"></app-offers-list>
+<app-offers-profile *ngIf="!isOffersList"></app-offers-profile>

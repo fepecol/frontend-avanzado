@@ -1,0 +1,84 @@
+import { Injectable } from '@angular/core';
+import { Effect, ofType, Actions} from '@ngrx/effects';
+import { Store, select } from '@ngrx/store';
+import { from, of } from 'rxjs';
+import { switchMap, map, withLatestFrom, tap } from 'rxjs/operators';
+
+import { IAppState } from '../state/app.state';
+import {
+  GetAccess,
+  GetAccessSuccess,
+  EUserActions,
+  GetAccessError,
+  ModifyAccount,
+  ModifyAccountSuccess,
+  GetOffers,
+  GetOffersSuccess
+} from '../actions/user.actions';
+import { SigninService } from '../../../views/signin/signin.service';
+import { ProfileService } from '../../../shared/services/profile.service';
+import { selectUserList } from '../selectors/user.selector';
+import { Router } from '@angular/router';
+import { OffersService } from '../../services/offers.service';
+
+@Injectable()
+export class UserEffects {
+
+  @Effect()
+  GetAccess$ = this._actions$.pipe(
+    ofType<GetAccess>(EUserActions.GetAccess),
+    map((action) => action.payload),
+    switchMap(payload => {
+      return from(this._signinService.login2(payload.email, payload.password))
+      .pipe(
+        switchMap(user => {
+        if(user !== undefined){
+          return of(new GetAccessSuccess(user))
+        }else{
+          return of(new GetAccessError())
+        }
+        })
+    )})
+  );
+
+  @Effect({dispatch:false})
+  GetAccessSuccess$ = this._actions$.pipe(
+    ofType<GetAccessSuccess>(EUserActions.GetAccessSuccess),
+    tap((user)=>console.log(user)),
+    switchMap(() => this.router.navigate(['admin/dashboard']))
+  );
+
+  @Effect()
+  ModifyAccount$ = this._actions$.pipe(
+    ofType<ModifyAccount>(EUserActions.ModifyAccount),
+    map((action) => action.payload),
+    tap(payload => this._profileService.updateProfile(payload)),
+    switchMap(payload => {
+      return of(new ModifyAccountSuccess(payload))
+    }),
+  );
+
+  @Effect({dispatch:false})
+  ModifyAccountSuccess$ = this._actions$.pipe(
+    ofType<ModifyAccountSuccess>(EUserActions.ModifyAccountSuccess),
+    tap((user)=>console.log(user)),
+    switchMap(() => this.router.navigate(['admin/profile']))
+  );
+
+  @Effect()
+  GetOffers$ = this._actions$.pipe(
+    ofType<GetOffers>(EUserActions.GetOffers),
+    switchMap(() => {
+      return of(new GetOffersSuccess(this._offersService.offers))
+    }),
+  );
+
+  constructor(
+    private _signinService: SigninService,
+    private _profileService: ProfileService,
+    private _offersService: OffersService,
+    private _actions$: Actions,
+    private _store: Store<IAppState>,
+    private router: Router,
+  ) {}
+}
