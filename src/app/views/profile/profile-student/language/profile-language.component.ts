@@ -9,6 +9,12 @@ import {
   LanguageName
 } from 'src/app/shared/models/language.model';
 import { dateValidator } from 'src/app/shared/directives/date-validator.directive';
+import { Observable } from 'rxjs';
+import { User } from '../../../../shared/models/user.model';
+import { Store, select } from '@ngrx/store';
+import { selectSelectedUser } from '../../../../shared/store/selectors/user.selector';
+import { IAppState } from '../../../../shared/store/state/app.state';
+import { ModifyAccount } from '../../../../shared/store/actions/user.actions';
 
 @Component({
   selector: 'app-profile-language',
@@ -20,18 +26,31 @@ export class ProfileLanguageComponent implements OnInit {
   language: Language = {} as Language;
   languageLevels: LanguageLevel[];
   languageNames: LanguageName[];
+  uid: number;
+  user$: Observable<User>;
+  user: User;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private _store: Store<IAppState>
   ) {
+    this.user$ = _store.pipe(select(selectSelectedUser));
     this.route.params.subscribe(params => {
+      this.uid = +params.uid;
+    });
+    this.user$.subscribe((res)=> {
+      this.user=res;
+      this.language = (this.user.languages.find(language => language.uid === this.uid) ||
+        {}) as Language;
+    });
+    /*this.route.params.subscribe(params => {
       const user = this.profileService.user;
       const uid = +params.uid;
       this.language = (user.languages.find(language => language.uid === uid) ||
         {}) as Language;
-    });
+    });*/
   }
   ngOnInit() {
     this.loadSelectProperties();
@@ -63,24 +82,26 @@ export class ProfileLanguageComponent implements OnInit {
     return option1.uid === (option2 && option2.uid);
   }
   private update(language: Language) {
-    const user = this.profileService.user;
-    const languages = user.languages;
+    //const user = this.profileService.user;
+    const languages = this.user.languages;
     const foundIndex = languages.findIndex(
       _language => _language.uid === language.uid
     );
     languages[foundIndex] = language;
-    this.profileService.updateProfile(user);
-    this.router.navigate(['/admin/profile']);
+    this._store.dispatch(new ModifyAccount(this.user));
+    /*this.profileService.updateProfile(user);
+    this.router.navigate(['/admin/profile']);*/
   }
   private save(language: Language) {
-    const user = this.profileService.user;
+    //const user = this.profileService.user;
     const _language = MockData.fakeIncreaseID<Language>(
-      user.languages,
+      this.user.languages,
       language
     );
-    user.languages = [...user.languages, _language];
-    this.profileService.updateProfile(user);
-    this.router.navigate(['/admin/profile']);
+    this.user.languages = [...this.user.languages, _language];
+    this._store.dispatch(new ModifyAccount(this.user));
+    /*this.profileService.updateProfile(user);
+    this.router.navigate(['/admin/profile']);*/
   }
 
   saveOrUpdate(language: Language) {
