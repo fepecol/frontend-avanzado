@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { IAppState } from '../../../shared/store/state/app.state';
 import { Observable } from 'rxjs';
 import { selectSelectedUser } from '../../../shared/store/selectors/user.selector';
+import { ModifyAccount } from '../../../shared/store/actions/user.actions';
 
 @Component({
   selector: 'app-profile-student',
@@ -19,6 +20,7 @@ export class ProfileStudentComponent {
     private _store: Store<IAppState>
     ) {
     this.user$ = _store.pipe(select(selectSelectedUser));
+    this.user$.subscribe((res)=> {this.user=res});
     //this.user = this.profileService.user;
   }
 
@@ -30,7 +32,8 @@ export class ProfileStudentComponent {
       return;
     }
     studies.splice(index, 1);
-    this.profileService.updateProfile(this.user);
+    this._store.dispatch(new ModifyAccount(this.user));
+    //this.profileService.updateProfile(this.user);
   }
   deleteLanguage(languageID: any) {
     const languages = this.user.languages;
@@ -40,6 +43,7 @@ export class ProfileStudentComponent {
       return;
     }
     languages.splice(index, 1);
-    this.profileService.updateProfile(this.user);
+    this._store.dispatch(new ModifyAccount(this.user));
+    //this.profileService.updateProfile(this.user);
   }
 }

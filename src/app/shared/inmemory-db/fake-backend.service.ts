@@ -51,8 +51,8 @@ export class FakeBackendService implements InMemoryDbService {
           {
             uid: 2,
             institution: {
-              uid: 2,
-              name: 'IES Politécnico Jesús Marin'
+              uid: 1,
+              name: 'IES Belén'
             },
             category: { uid: 2, name: 'Informática y comunicaciones' },
             level: { uid: 1, name: 'Ciclo Formativo' },
