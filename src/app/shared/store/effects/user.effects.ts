@@ -11,12 +11,15 @@ import {
   EUserActions,
   GetAccessError,
   ModifyAccount,
-  ModifyAccountSuccess
+  ModifyAccountSuccess,
+  GetOffers,
+  GetOffersSuccess
 } from '../actions/user.actions';
 import { SigninService } from '../../../views/signin/signin.service';
 import { ProfileService } from '../../../shared/services/profile.service';
 import { selectUserList } from '../selectors/user.selector';
 import { Router } from '@angular/router';
+import { OffersService } from '../../services/offers.service';
 
 @Injectable()
 export class UserEffects {
@@ -62,9 +65,18 @@ export class UserEffects {
     switchMap(() => this.router.navigate(['admin/profile']))
   );
 
+  @Effect()
+  GetOffers$ = this._actions$.pipe(
+    ofType<GetOffers>(EUserActions.GetOffers),
+    switchMap(() => {
+      return of(new GetOffersSuccess(this._offersService.offers))
+    }),
+  );
+
   constructor(
     private _signinService: SigninService,
     private _profileService: ProfileService,
+    private _offersService: OffersService,
     private _actions$: Actions,
     private _store: Store<IAppState>,
     private router: Router,

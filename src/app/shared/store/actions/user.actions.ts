@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { User } from '../../models/user.model';
+import { Offer } from '../../models/offer.model';
 
 
 export enum EUserActions {
@@ -9,6 +10,8 @@ export enum EUserActions {
     GetAccessError = '[User] Get Access Error',
     ModifyAccount ='[User] Get Modify Account',
     ModifyAccountSuccess = '[User] Get Modify Account Success',
+    GetOffers= '[User] Get Offers',
+    GetOffersSuccess='[User] Get Offers Success'
 }
 
 export class GetAccess implements Action {
@@ -35,4 +38,13 @@ export class ModifyAccountSuccess implements Action {
     constructor(public payload: User) {}
 }
 
-export type UserActions = GetAccess | GetAccessSuccess | GetAccessError | ModifyAccount | ModifyAccountSuccess;
+export class GetOffers implements Action {
+    public readonly type = EUserActions.GetOffers;
+}
+
+export class GetOffersSuccess implements Action {
+    public readonly type = EUserActions.GetOffersSuccess;
+    constructor(public payload: Offer[]) {}
+}
+
+export type UserActions = GetAccess | GetAccessSuccess | GetAccessError | ModifyAccount | ModifyAccountSuccess | GetOffers | GetOffersSuccess;

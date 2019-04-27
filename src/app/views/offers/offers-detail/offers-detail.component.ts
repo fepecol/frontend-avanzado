@@ -4,6 +4,11 @@ import { Offer } from 'src/app/shared/models/offer.model';
 import { ProfileService } from 'src/app/shared/services/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user.model';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from '../../../shared/store/state/app.state';
+import { Observable } from 'rxjs';
+import { selectSelectedUser, offers } from '../../../shared/store/selectors/user.selector';
+import { GetOffers } from '../../../shared/store/actions/user.actions';
 
 @Component({
   selector: 'app-offers-detail',
@@ -12,19 +17,26 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class OffersDetailComponent implements OnInit {
   offer: Offer;
+  offers: Offer[];
   user: User;
+  user$: Observable<User>;
+  offers$: Observable<Offer[]>;
+
   constructor(
     private profileService: ProfileService,
     private offersService: OffersService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _store: Store<IAppState>
   ) {
-    this.user = this.profileService.user;
+    this.user$ = _store.pipe(select(selectSelectedUser));
+    this.user$.subscribe((res)=> {this.user=res});
+    this.offers$ = _store.pipe(select(offers));
+    this.offers$.subscribe((res)=> {this.offers=res});
+    //this.user = this.profileService.user;
     this.route.params.subscribe(params => {
-      const offers = this.offersService.offers;
-
       const offerID = +params.id;
-      this.offer = (offers.find(offer => offer.id === offerID) || {}) as Offer;
+      this.offer = (this.offers.find(offer => offer.id === offerID) || {}) as Offer;
     });
   }
 

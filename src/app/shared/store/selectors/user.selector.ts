@@ -19,3 +19,8 @@ export const error = createSelector(
   selectUsers,
   (state: IUserState) => state.error
 );
+
+export const offers = createSelector(
+  selectUsers,
+  (state: IUserState) => state.offers
+);
