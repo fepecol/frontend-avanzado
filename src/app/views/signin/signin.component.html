@@ -3,50 +3,54 @@
     <div class="col-sm-6 offset-sm-3">
       <img src="/assets/img/uoc_logo.png" />
 
-      <h2>Login</h2>
+      <mat-card>
+        <mat-card-title color="primary"><h2>Login</h2></mat-card-title>
+        <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div *ngIf="errorLogin" class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">
+              &times;
+            </button>
 
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div *ngIf="errorLogin" class="alert alert-danger">
-          <button type="button" class="close" data-dismiss="alert">
-            &times;
-          </button>
-
-          There is an error in email or password
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            formControlName="email"
-            class="form-control"
-            [ngClass]="{
-              'is-invalid': submitted && loginForm.controls.email.errors
-            }"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            formControlName="password"
-            class="form-control"
-            [ngClass]="{
-              'is-invalid': submitted && loginForm.controls.password.errors
-            }"
-          />
-        </div>
-        <div class="form-group">
-          <button [disabled]="loginForm.invalid" class="btn btn-primary">
-            Login
-          </button>
-          <a routerLink="/forgot-password" class="btn btn-link"
-            >Remember password</a
-          >
-        </div>
-      </form>
+            There is an error in email or password
+          </div>
+          <div class="form-group">
+            <mat-form-field class="form-material">
+              <input matInput placeholder="Username"
+                type="text"
+                id="email"
+                formControlName="email"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': submitted && loginForm.controls.email.errors
+                }"
+              />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="form-material">
+              <input matInput placeholder="Password"
+                type="password"
+                id="password"
+                formControlName="password"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': submitted && loginForm.controls.password.errors
+                }"
+              />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <button [disabled]="loginForm.invalid" mat-raised-button color="primary">
+              Login
+            </button>
+            <a routerLink="/forgot-password" class="btn btn-link"
+              >Remember password</a
+            >
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
     </div>
   </div>
 </div>
