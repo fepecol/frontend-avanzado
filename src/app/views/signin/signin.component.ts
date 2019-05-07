@@ -27,4 +27,10 @@ export class SigninComponent implements OnInit {
     this.submitted = true;
     this.store$.dispatch(new AuthActions.Identification({...this.loginForm.value}));
   }
+
+  getEmailErrorMessage() {
+    return this.loginForm.controls.email.hasError('required') ? 'Debes introducir un valor' :
+        this.loginForm.controls.email.hasError('email') ? 'El email no es válido' :
+            '';
+  }
 }
