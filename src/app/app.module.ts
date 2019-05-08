@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeBackendService } from './shared/inmemory-db/fake-backend.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientInMemoryWebApiModule.forRoot(FakeBackendService, {
       dataEncapsulation: false
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlexLayoutModule
   ],
   declarations: [AppComponent],
   providers: [],
