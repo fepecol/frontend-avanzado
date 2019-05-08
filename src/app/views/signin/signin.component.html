@@ -1,133 +1,54 @@
 <div fxLayout="row">
-  <div fxFlex="10" fxFlex.gt-sm="20">
-
-  </div>
+  <div fxFlex="10" fxFlex.gt-sm="20"></div>
   <div fxFlex="90" fxFlex.gt-sm="80">
-      <div fxLayout="column" fxLayoutGap="30px">
-          <div>
-            <img src="/assets/img/uoc_logo.png" />
-          </div>
-          <div>
-            <mat-card>
-              <div>
-                <mat-card-header>
-                  <mat-card-title color="primary"><h2>Login</h2></mat-card-title>
-                </mat-card-header>
-              </div>
-              <div fxLayout="column" fxLayoutAlign="center">
-                <mat-card-content >
-                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                    <div class="form-material" *ngIf="errorLogin" class="alert alert-danger">
-                      <button type="button" class="close" data-dismiss="alert">
-                        &times;
-                      </button>
-                      There is an error in email or password
-                    </div>
-                    <div>
-                      <mat-form-field class="form-material">
-                        <input matInput placeholder="Username" type="text" id="email" formControlName="email" class="form-control"
-                          [ngClass]="{'is-invalid': submitted && loginForm.controls.email.errors}"/>
-                        <mat-error *ngIf="loginForm.controls.email.errors">{{getEmailErrorMessage()}}</mat-error>
-                      </mat-form-field>
-                    </div>
-                    <div>
-                      <mat-form-field class="form-material">
-                        <input matInput placeholder="Password" type="password" id="password" formControlName="password" class="form-control"
-                          [ngClass]="{'is-invalid': submitted && loginForm.controls.password.errors}"/>
-                        <mat-error *ngIf="loginForm.controls.password.errors">Debes introducir un valor</mat-error>
-                      </mat-form-field>
-                    </div>
-                    <div fxLayout="row" fxLayoutGap="30px">
-                      <div>
-                        <button [disabled]="loginForm.invalid" mat-raised-button color="primary">Login</button>
-                      </div>
-                      <div>
-                        <a mat-button routerLink="/forgot-password" class="btn btn-link">Remember password</a>
-                      </div>
-                    </div>
-                  </form>
-                </mat-card-content>
-              </div>
-            </mat-card>
-          </div>
-          
-        </div>
-  </div>
-  <div fxFlex="10" fxFlex.gt-sm="20">
-
-  </div>
-</div>
-<!-- <div fxLayoutAlign="center">
-  <div fxLayout="column" fxLayoutGap="30px">
-    <div>
-      <img src="/assets/img/uoc_logo.png" />
-    </div>
-    <div>
-      <mat-card>
+    <div fxLayout="column" fxLayoutGap="30px">
+      <div>
+        <img src="/assets/img/uoc_logo.png" />
+      </div>
         <div>
-          <mat-card-header>
-            <mat-card-title color="primary"><h2>Login</h2></mat-card-title>
-          </mat-card-header>
+          <mat-card>
+            <div>
+              <mat-card-header>
+                <mat-card-title color="primary"><h2>Login</h2></mat-card-title>
+              </mat-card-header>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="center">
+              <mat-card-content >
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <div class="form-material" *ngIf="errorLogin" class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">
+                      &times;
+                    </button>
+                    There is an error in email or password
+                  </div>
+                  <div>
+                    <mat-form-field class="form-material">
+                      <input matInput placeholder="Username" type="text" id="email" formControlName="email" class="form-control"
+                        [ngClass]="{'is-invalid': submitted && loginForm.controls.email.errors}"/>
+                      <mat-error *ngIf="loginForm.controls.email.errors">{{getEmailErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field class="form-material">
+                      <input matInput placeholder="Password" type="password" id="password" formControlName="password" class="form-control"
+                        [ngClass]="{'is-invalid': submitted && loginForm.controls.password.errors}"/>
+                      <mat-error *ngIf="loginForm.controls.password.errors">Debes introducir un valor</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="30px">
+                    <div>
+                      <button [disabled]="loginForm.invalid" mat-raised-button color="primary">Login</button>
+                    </div>
+                    <div>
+                      <a mat-button routerLink="/forgot-password" class="btn btn-link">Remember password</a>
+                    </div>
+                  </div>
+                </form>
+              </mat-card-content>
+            </div>
+          </mat-card>
         </div>
-        <div fxLayout="column" fxLayoutAlign="center">
-          <mat-card-content >
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-              <div class="form-material" *ngIf="errorLogin" class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert">
-                  &times;
-                </button>
-                There is an error in email or password
-              </div>
-              <div>
-                <mat-form-field class="form-material">
-                  <input matInput placeholder="Username" type="text" id="email" formControlName="email" class="form-control"
-                    [ngClass]="{'is-invalid': submitted && loginForm.controls.email.errors}"/>
-                  <mat-error *ngIf="loginForm.controls.email.errors">{{getEmailErrorMessage()}}</mat-error>
-                </mat-form-field>
-              </div>
-              <div>
-                <mat-form-field class="form-material">
-                  <input matInput placeholder="Password" type="password" id="password" formControlName="password" class="form-control"
-                    [ngClass]="{'is-invalid': submitted && loginForm.controls.password.errors}"/>
-                  <mat-error *ngIf="loginForm.controls.password.errors">Debes introducir un valor</mat-error>
-                </mat-form-field>
-              </div>
-              <div fxLayout="row" fxLayoutGap="30px">
-                <div>
-                  <button [disabled]="loginForm.invalid" mat-raised-button color="primary">Login</button>
-                </div>
-                <div>
-                  <a mat-button routerLink="/forgot-password" class="btn btn-link">Remember password</a>
-                </div>
-              </div>
-            </form>
-          </mat-card-content>
-        </div>
-      </mat-card>
     </div>
-    
   </div>
-</div> -->
-
-
-<!-- <mat-card fxFlex fxFlexAlign="start">
-
-  <mat-card-content>
-    <div fxLayout fxLayout.xs="column wrap" fxLayoutGap="25px">
-      <mat-form-field fxFlex="calc(50% - 25px)">
-        <input matInput placeholder="Name">
-      </mat-form-field>
-      <mat-form-field fxFlex="calc(50% - 25px)">
-        <input matInput placeholder="Occupation">
-      </mat-form-field>
-      <mat-form-field fxFlex="calc(50% - 25px)">
-        <input matInput placeholder="Company">
-      </mat-form-field>
-    </div>
-  </mat-card-content>
-
-  <mat-card-actions>
-    <button mat-button>Anterior</button>
-    <button mat-button>Proximo</button>
-  </mat-card-actions>
-</mat-card> -->
+  <div fxFlex="10" fxFlex.gt-sm="20"></div>
+</div>
