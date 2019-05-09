@@ -12,7 +12,11 @@ import {
   MatProgressSpinnerModule,
   MatSliderModule,
   MatSnackBarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatCheckboxModule,
+  MatTableModule
 } from '@angular/material';
 import {NgModule} from '@angular/core';
 
@@ -31,7 +35,11 @@ import {NgModule} from '@angular/core';
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatTableModule
   ],
   exports: [
     MatButtonModule,
@@ -47,7 +55,12 @@ import {NgModule} from '@angular/core';
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatTableModule
   ],
 })
 

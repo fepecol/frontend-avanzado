@@ -1,29 +1,27 @@
-<!-- <div class="app-admin-wrap" [dir]="layoutConf.dir"> -->
-<!-- Header for top navigation layout -->
-<!-- ONLY REQUIRED FOR **TOP** NAVIGATION LAYOUT -->
-<!--   <app-header-top
-    *ngIf="layoutConf.navigationPos === 'top'"
-    [notificPanel]="notificationPanel"
-  >
-  </app-header-top> -->
-<div class="row">
-  <div class="col-3">
-    <ul>
-      <li><a routerLink="/">Logout</a></li>
-      <li><a routerLink="/admin/">Dashboard</a></li>
 
-      <li><a routerLink="/admin/profile">Profile</a></li>
-      <li><a routerLink="/admin/offers">Offers</a></li>
-      <li>
-        <a routerLink="/admin/config">Configuración</a>
-      </li>
-      <li>
-        <a [routerLink]="['/admin/offers/my-offers']">Mis ofertas</a>
-      </li>
-    </ul>
-  </div>
-  <div class="col-9">
-    <router-outlet></router-outlet>
-  </div>
-</div>
-<!-- </div> -->
+<mat-sidenav-container class="example-container" >
+    <mat-toolbar class="" color="primary">
+        <div>
+          <button mat-icon-button (click)="sidenav.toggle()">
+              <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+        <span>Frontend avanzado</span>
+    </mat-toolbar>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+                 (closed)="events.push('close!')">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/">Logout</a>
+        <a mat-list-item routerLink="/admin/">Dashboard</a>
+        <a mat-list-item routerLink="/admin/profile">Profile</a>
+        <a mat-list-item routerLink="/admin/offers">Offers</a>
+        <a mat-list-item routerLink="/admin/config">Configuración</a>
+        <a mat-list-item [routerLink]="['/admin/offers/my-offers']">Mis ofertas</a>
+      </mat-nav-list>
+    </mat-sidenav>
+      <!-- <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+      </button> -->
+      <router-outlet></router-outlet>
+    
+  </mat-sidenav-container>
