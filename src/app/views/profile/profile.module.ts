@@ -11,6 +11,7 @@ import { ProfileAccountComponent } from './profile-student/account/profile-accou
 import { ProfileAccountWrapperComponent } from './profile-student/account/profile-account.component-wrapper';
 import { ProfileLanguageWrapperComponent } from './profile-student/language/profile-language.component-wrapper';
 import { ProfileStudyWrapperComponent } from './profile-student/study/profile-study.component-wrapper';
+import {MaterialModule} from '../../shared/modules/material.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,6 @@ import { ProfileStudyWrapperComponent } from './profile-student/study/profile-st
     ProfileAccountComponent,
     ProfileAccountWrapperComponent
   ],
-  imports: [SharedModule, ProfileRoutingModule]
+  imports: [SharedModule, ProfileRoutingModule, MaterialModule]
 })
 export class ProfileModule {}

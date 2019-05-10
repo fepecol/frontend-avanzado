@@ -1,6 +1,6 @@
 
 <mat-sidenav-container class="example-container" >
-    <mat-toolbar class="" color="primary">
+    <mat-toolbar class="" color="primary" >
         <div>
           <button mat-icon-button (click)="sidenav.toggle()">
               <mat-icon>menu</mat-icon>
@@ -19,9 +19,7 @@
         <a mat-list-item [routerLink]="['/admin/offers/my-offers']">Mis ofertas</a>
       </mat-nav-list>
     </mat-sidenav>
-      <!-- <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-      </button> -->
-      <router-outlet></router-outlet>
     
+    <router-outlet></router-outlet>
+      
   </mat-sidenav-container>
