@@ -1,23 +1,36 @@
+// .profile-table td{
+//     padding-left: 10px;
+//     padding-right: 10px;
+// }
 
-
-#contenido{
-	padding-top:4em;
-}
-td{
-	padding-left:2em;
-}
-#foto-perfil, #datosPersonales{
-	width:25%;
-
+.studies-table td.mat-cell:last-of-type{
+	padding-right: 18px;
 }
 
-#otra_info{
-	padding-left:3em;
+#formacion_academica, #languages, #datosPersonales{
+	margin-top: 15px;
+	margin: 15px;
 }
 
-#otra_info  div{
-	padding-left:1em;
+.profile-footer{
+	padding-left: 15px;
+	padding-bottom: 10px;
 }
-h2{
-	margin-top:2em;
+
+.center{
+	text-align: center;
+}
+
+.profile-modify{
+	width: 90px;
+}
+
+.black{
+	font-weight: bold;
+}
+
+.profile-list .mat-list-item{
+	height: auto;
+	padding-top: 6px;
+	padding-bottom: 6px;
 }

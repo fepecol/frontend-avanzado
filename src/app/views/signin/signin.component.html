@@ -1,55 +1,57 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 offset-sm-3">
-      <img src="/assets/img/uoc_logo.png" />
-
-      <h2>Login</h2>
-
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div *ngIf="errorLogin" class="alert alert-danger">
-          <button type="button" class="close" data-dismiss="alert">
-            &times;
-          </button>
-
-          There is an error in email or password
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            formControlName="email"
-            class="form-control"
-            [ngClass]="{
-              'is-invalid': submitted && loginForm.controls.email.errors
-            }"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            formControlName="password"
-            class="form-control"
-            [ngClass]="{
-              'is-invalid': submitted && loginForm.controls.password.errors
-            }"
-          />
-        </div>
-        <div class="form-group">
-          <button [disabled]="loginForm.invalid" class="btn btn-primary">
-            Login
-          </button>
-          <a routerLink="/forgot-password" class="btn btn-link"
-            >Remember password</a
-          >
-        </div>
-      </form>
-      <div *ngIf="error$ | async" class="alert alert-danger" role="alert">
-        {{error$ | async}}
+<mat-toolbar class="" color="primary">
+    <span>Frontend avanzado</span>
+</mat-toolbar>
+<div fxLayout="row">
+  <div fxFlex="10" fxFlex.gt-sm="20"></div>
+  <div fxFlex="90" fxFlex.gt-sm="80">
+    <div fxLayout="column" fxLayoutGap="30px">
+      <div>
+        <img src="/assets/img/uoc_logo.png" />
       </div>
+        <div>
+          <mat-card>
+            <div>
+              <mat-card-header>
+                <mat-card-title color="primary"><h2>Login</h2></mat-card-title>
+              </mat-card-header>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="center">
+              <mat-card-content >
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <div class="form-material" *ngIf="errorLogin" class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">
+                      &times;
+                    </button>
+                    There is an error in email or password
+                  </div>
+                  <div>
+                    <mat-form-field class="form-material">
+                      <input matInput placeholder="Username" type="text" id="email" formControlName="email" class="form-control"
+                        [ngClass]="{'is-invalid': submitted && loginForm.controls.email.errors}"/>
+                      <mat-error *ngIf="loginForm.controls.email.errors">{{getEmailErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field class="form-material">
+                      <input matInput placeholder="Password" type="password" id="password" formControlName="password" class="form-control"
+                        [ngClass]="{'is-invalid': submitted && loginForm.controls.password.errors}"/>
+                      <mat-error *ngIf="loginForm.controls.password.errors">Debes introducir un valor</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="30px">
+                    <div>
+                      <button [disabled]="loginForm.invalid" mat-raised-button color="primary">Login</button>
+                    </div>
+                    <div>
+                      <a mat-button color="primary" routerLink="/forgot-password" class="btn btn-link">Remember password</a>
+                    </div>
+                  </div>
+                </form>
+              </mat-card-content>
+            </div>
+          </mat-card>
+        </div>
     </div>
   </div>
+  <div fxFlex="10" fxFlex.gt-sm="20"></div>
 </div>

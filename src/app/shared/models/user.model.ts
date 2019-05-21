@@ -1,5 +1,4 @@
-import { AppSettings } from '../app.settings';
-import { Study, VocationalStudy, CollegeStudy } from './study.model';
+import { VocationalStudy, CollegeStudy } from './study.model';
 import { Language } from './language.model';
 import { Offer } from './offer.model';
 import { Experience } from './experience.model';
@@ -33,7 +32,6 @@ export interface User {
   birthdate: string;
   phone: string;
   phone2: string;
-
   email: string;
   documentNumber: string;
   documentType: DocumentType;

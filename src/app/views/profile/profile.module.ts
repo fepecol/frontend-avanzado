@@ -8,17 +8,24 @@ import { VocationalFormComponent } from './profile-student/study/vocational-form
 import { UniversityDegreeComponent } from './profile-student/study/university-degree-form/university-degree-form.component';
 import { ProfileLanguageComponent } from './profile-student/language/profile-language.component';
 import { ProfileAccountComponent } from './profile-student/account/profile-account.component';
+import { ProfileAccountWrapperComponent } from './profile-student/account/profile-account.component-wrapper';
+import { ProfileLanguageWrapperComponent } from './profile-student/language/profile-language.component-wrapper';
+import { ProfileStudyWrapperComponent } from './profile-student/study/profile-study.component-wrapper';
+import {MaterialModule} from '../../shared/modules/material.module';
 
 @NgModule({
   declarations: [
     ProfileComponent,
     ProfileStudentComponent,
     ProfileStudyComponent,
+    ProfileStudyWrapperComponent,
     VocationalFormComponent,
     UniversityDegreeComponent,
     ProfileLanguageComponent,
-    ProfileAccountComponent
+    ProfileLanguageWrapperComponent,
+    ProfileAccountComponent,
+    ProfileAccountWrapperComponent
   ],
-  imports: [SharedModule, ProfileRoutingModule]
+  imports: [SharedModule, ProfileRoutingModule, MaterialModule]
 })
 export class ProfileModule {}

@@ -1,143 +1,209 @@
-<div id="contenido">
-  <div class="float-left" id="foto-perfil">
-    <div>
-      <img
-        class="img-fluid img-profile rounded-circle mx-auto mb-2"
-        src="{{ (user$ | async).avatar_hash }}"
-      />
-    </div>
-    <div class="text-center pr-5">
-      {{ (user$ | async).name + ' ' + (user$ | async).surname }}
-    </div>
-  </div>
+<div *ngIf="user" id="contenido">
+  <mat-card id="datosPersonales">
+    <mat-card-title>
+      <h2>Profile</h2>
+    </mat-card-title>
+    <mat-card-content>
+      <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+        <div fxFlex="30%" class="center" fxLayout="column">
+          <div>
+            <img
+              class="img-fluid img-profile rounded-circle mx-auto mb-2"
+              src="{{ user.avatar_hash }}"
+            />
+          </div>
+          <div class="text-center pr-5">
+            {{ user.name + ' ' + user.surname }}
+          </div>
+        </div>
+        <div fxFlex="35%" fxLayout="column">
+          <mat-list class="profile-list">
+            <mat-list-item> 
+              <div fxLayout="row" layout-align="start center">
+                <div fxFlex="40%" class="black">
+                  Email 
+                </div>
+                <div fxFlex="60%">
+                  {{ user.email }}
+                </div>
+              </div>
+            </mat-list-item>
+            <mat-list-item> 
+              <div fxLayout="row">
+                <div fxFlex="40%" class="black">
+                  Fecha de nacimiento 
+                </div>
+                <div fxFlex="60%">
+                  {{ user.birthdate }}
+                </div>
+              </div>
+            </mat-list-item>
+            <mat-list-item> 
+              <div fxLayout="row">
+                <div fxFlex="40%" class="black">
+                  Teléfono 
+                </div>
+                <div fxFlex="60%">
+                  {{ user.phone }}
+                </div>
+              </div>
+            </mat-list-item>
+            <mat-list-item> 
+              <div fxLayout="row">
+                <div fxFlex="40%" class="black">
+                  NIF/NIE
+                </div>
+                <div fxFlex="60%">
+                  {{ user.documentNumber }}
+                </div>
+              </div>
+            </mat-list-item>
+            <mat-list-item> 
+              <div fxLayout="row">
+                <div fxFlex="40%" class="black">
+                  Permisos de conducir
+                </div>
+                <div fxFlex="60%">
+                  {{ user.license }}
+                </div>
+              </div>
+            </mat-list-item>
+            <mat-list-item> 
+              <div fxLayout="row">
+                <div fxFlex="40%" class="black">
+                  Dirección
+                </div>
+                <div fxFlex="60%">
+                  {{ user.address | json }}
+                </div>
+              </div>
+            </mat-list-item>
+          </mat-list>
+          <div class="center">
+            <a mat-raised-button color="primary" class="profile-modify" [routerLink]="['/admin/profile/profile-student/account']">Modificar</a>
+          </div>
+        </div>
+        <div fxFlex="35%" class="center" fxLayout="column">
+          <form>
+            <div class="float-left">
+              <label for="about-me">Acerca de mi...</label><br />
+              <textarea readonly="true" id="about-me" name="about-me">{{
+                user.aboutMe
+              }}</textarea>
+            </div>
+            <div class="float-left">
+              <label for="other">Otras competencias</label> <br />
 
-  <section id="datosPersonales" class="float-left">
-    <table>
-      <tbody>
-        <tr>
-          <th>Email</th>
-          <td>{{ (user$ | async).email }}</td>
-        </tr>
-        <tr>
-          <th>Fecha de nacimiento</th>
-          <td>{{ (user$ | async).birthdate }}</td>
-        </tr>
-        <tr>
-          <th>Tel&eacute;fono</th>
-          <td>{{ (user$ | async).phone }}</td>
-        </tr>
-        <tr>
-          <th>NIF/NIE</th>
-          <td>{{ (user$ | async).documentNumber }}</td>
-        </tr>
-        <tr>
-          <th>Permisos de conducir</th>
-          <td>{{ (user$ | async).license }}</td>
-        </tr>
-        <tr>
-          <th>Direccion</th>
-          <td>{{ (user$ | async).address | json }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <a [routerLink]="['/admin/profile/profile-student/account']">Modificar</a>
-  </section>
-  <div id="otra_info" class="float-left">
-    <form>
-      <div class="float-left">
-        <label for="about-me">Acerca de mi...</label><br />
-        <textarea readonly="true" id="about-me" name="about-me">{{
-          (user$ | async).aboutMe
-        }}</textarea>
+              <textarea readonly="true" id="other" name="other">{{
+                user.otherCompetences
+              }}</textarea>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="float-left">
-        <label for="other">Otras competencias</label> <br />
+    </mat-card-content>
+  </mat-card>
+  <mat-card id="formacion_academica">
+    <mat-card-title>
+      <h2>Formaci&oacute;n acad&eacute;mica</h2>
+    </mat-card-title>
+    <mat-card-content>
+      <table mat-table [dataSource]="user.studies" class="studies-table  mat-elevation-z8">
 
-        <textarea readonly="true" id="other" name="other">{{
-          (user$ | async).otherCompetences
-        }}</textarea>
-      </div>
-    </form>
-  </div>
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef> Tipo </th>
+          <td mat-cell *matCellDef="let element"> {{element.level.name}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="nivel">
+          <th mat-header-cell *matHeaderCellDef> Nivel </th>
+          <td mat-cell *matCellDef="let element"> {{element.grade?.name}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="titulo">
+          <th mat-header-cell *matHeaderCellDef> Título </th>
+          <td mat-cell *matCellDef="let element"> {{element.title.name || element.title}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="centro">
+          <th mat-header-cell *matHeaderCellDef> Centro </th>
+          <td mat-cell *matCellDef="let element"> {{ element.institution.name || element.institution }} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="certificado">
+          <th mat-header-cell *matHeaderCellDef> Certificado </th>
+          <td mat-cell *matCellDef="let element"> {{element.certificate ? 'Sí' : 'No'}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="bilingue">
+          <th mat-header-cell *matHeaderCellDef> Bilingüe </th>
+          <td mat-cell *matCellDef="let element"> {{ element.bilingue ? 'Sí' : 'No' }} </td>
+        </ng-container>
 
-  <section style="clear:both;padding-bottom:4em;"></section>
+        <ng-container matColumnDef="dual">
+          <th mat-header-cell *matHeaderCellDef> Dual </th>
+          <td mat-cell *matCellDef="let element"> {{ element.dual ? 'Sí' : 'No' }} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+              <a mat-button color="primary" [routerLink]="['/admin/profile/profile-student/study', element.uid]">Editar</a>
+              <a mat-button color="warn" style="cursor:pointer" (click)="deleteStudy(element.uid)">Borrar</a></td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="studiesColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: studiesColumns;"></tr>
+      </table>      
+    </mat-card-content>
+    <mat-card-footer class="profile-footer">
+      <a mat-raised-button color="primary" [routerLink]="['/admin/profile/profile-student/study']">Nueva formación</a>
+    </mat-card-footer>
+  </mat-card>
 
-  <h2>Formaci&oacute;n acad&eacute;mica</h2>
-  <section id="formacion_academica">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-light">
-        <th>Tipo</th>
-        <th>Nivel</th>
-        <th>T&iacute;tulo</th>
-        <th>Centro</th>
-        <th>Fecha</th>
-        <th>Certificado</th>
-        <th>Bilingüe</th>
-        <th>Dual</th>
-        <th>Acciones</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let study of (user$ | async).studies; let i = index">
-          <td>{{ study.level.name }}</td>
-          <td>{{ study.grade?.name }}</td>
+  <mat-card id="languages">
+    <mat-card-title>
+      <h2>Idiomas</h2>
+    </mat-card-title>
+    <mat-card-content>
+      <table mat-table [dataSource]="user.languages" class="profile-table  mat-elevation-z8">
 
-          <td>{{ study.title.name || study.title }}</td>
-          <td>{{ study.institution.name || study.institution }}</td>
-          <td>{{ study.date }}</td>
-          <td>{{ study.certificate ? 'Sí' : 'No' }}</td>
-          <td>{{ study.bilingue ? 'Sí' : 'No' }}</td>
-          <td>{{ study.dual ? 'Sí' : 'No' }}</td>
-
-          <td>
-            <a
-              [routerLink]="['/admin/profile/profile-student/study', study.uid]"
-              >Editar</a
-            >
-            |
-            <a style="cursor:pointer" (click)="deleteStudy(study.uid)"
-              >Borrar</a
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <a [routerLink]="['/admin/profile/profile-student/study']"
-      >Nueva formación</a
-    >
-  </section>
-
-  <h2>Idiomas</h2>
-  <section id="languages">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-light">
-        <th>Nivel</th>
-        <th>Idioma</th>
-        <th>Fecha</th>
-        <th>Acciones</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let language of (user$ | async).languages">
-          <td>{{ language.level.name }}</td>
-          <td>{{ language.name.name }}</td>
-          <td>{{ language.date }}</td>
-          <td>
-            <a
-              [routerLink]="[
-                '/admin/profile/profile-student/language',
-                language.uid
-              ]"
-              >Editar</a
-            >
-            |
-            <a style="cursor:pointer" (click)="deleteLanguage(language.uid)"
-              >Borrar</a
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <a [routerLink]="['/admin/profile/profile-student/language']"
-      >Nuevo idioma</a
-    >
-  </section>
+        <ng-container matColumnDef="nivel">
+          <th mat-header-cell *matHeaderCellDef> Nivel </th>
+          <td mat-cell *matCellDef="let element"> {{element.level.name}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="idioma">
+          <th mat-header-cell *matHeaderCellDef> Idioma </th>
+          <td mat-cell *matCellDef="let element"> {{ element.name.name }} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+              <a mat-button color="primary" [routerLink]="['/admin/profile/profile-student/study', element.uid]">Editar</a>
+              <a mat-button color="warn" style="cursor:pointer" (click)="deleteStudy(element.uid)">Borrar</a></td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="languagesColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: languagesColumns;"></tr>
+      </table>
+    </mat-card-content>
+    <mat-card-footer class="profile-footer">
+      <a mat-raised-button color="primary" [routerLink]="['/admin/profile/profile-student/language']">Nuevo idioma</a>
+    </mat-card-footer>
+  </mat-card>
+</div>
+<div *ngIf="!user" id="contenido">
+  <p>Datos están siendo cargados...</p>
 </div>

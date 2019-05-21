@@ -6,14 +6,17 @@ import { OffersComponent } from './offers.component';
 import { OffersDetailComponent } from './offers-detail/offers-detail.component';
 import { OffersListComponent } from './offers-list/offers-list.component';
 import { OffersProfileComponent } from './offers-profile/offers-profile.component';
+import { OffersDetailWrapperComponent } from './offers-detail/offers-detail.component-wrapper';
+import {MaterialModule} from '../../shared/modules/material.module';
 
 @NgModule({
   declarations: [
     OffersComponent,
     OffersProfileComponent,
     OffersListComponent,
-    OffersDetailComponent
+    OffersDetailComponent,
+    OffersDetailWrapperComponent
   ],
-  imports: [CommonModule, OffersRoutingModule]
+  imports: [CommonModule, OffersRoutingModule, MaterialModule]
 })
 export class OffersModule {}
