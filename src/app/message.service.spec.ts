@@ -11,11 +11,11 @@ describe('MessageService', () => {
     });
   });
 
-  // it('should be created', inject([MessageService], (service: MessageService) => {
-  //   expect(service).toBeTruthy();
-  // }));
+  it('should be created', inject([MessageService], (service: MessageService) => {
+    expect(service).toBeTruthy();
+  }));
 
-  it('test service add function', inject([MessageService], (service: MessageService) => {  
+  it('test service', inject([MessageService], (service: MessageService) => {  
     expect(service.get().length).toBe(0);    
     service.add('test');
     expect(service.get().length).toBe(1);

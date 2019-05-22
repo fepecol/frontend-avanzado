@@ -21,7 +21,18 @@ describe('HeroesComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should be created', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should be created', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('<h2> con texto: My Heroes', () => {
+    const h2: HTMLElement = fixture.nativeElement.querySelector('h2');
+    expect(h2.textContent).toBe('My Heroes');
+  });
+
+  it('Simula la invocación del boton haciendo click y comprueba que se invoca el método add.', () => {
+    spyOn(component, 'add');
+    fixture.debugElement.nativeElement.querySelector('button').click();
+    expect(component.add).toHaveBeenCalled();
+});
 });
