@@ -39,20 +39,20 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('should be created', () => {
+  //   expect(component).toBeTruthy();
+  // });
 
-  it('should display "Top Heroes" as headline', () => {
-    expect(fixture.nativeElement.querySelector('h3').textContent).toEqual('Top Heroes');
-  });
+  // it('should display "Top Heroes" as headline', () => {
+  //   expect(fixture.nativeElement.querySelector('h3').textContent).toEqual('Top Heroes');
+  // });
 
-  it('should call heroService', async(() => {
-    expect(getHeroesSpy.calls.any()).toBe(true);
-    }));
+  // it('should call heroService', async(() => {
+  //   expect(getHeroesSpy.calls.any()).toBe(true);
+  //   }));
 
-  it('should display 4 links', async(() => {
-    expect(fixture.nativeElement.querySelectorAll('a').length).toEqual(4);
-  }));
+  // it('should display 4 links', async(() => {
+  //   expect(fixture.nativeElement.querySelectorAll('a').length).toEqual(4);
+  // }));
 
 });
