@@ -27,6 +27,8 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE');
     }),
     BrowserAnimationsModule,
     FlexLayoutModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserTransferStateModule,
     MaterialModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
