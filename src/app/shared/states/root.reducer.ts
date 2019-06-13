@@ -26,13 +26,22 @@ export function localStorageSyncReducer(
   return localStorageSync({ keys: ['auth'], rehydrate: true })(reducer);
 }
 
+export function stateSetter(reducer: ActionReducer<any>): ActionReducer<any> {
+  return function(state: any, action: any) {
+      if (action.type === 'SET_ROOT_STATE') {
+          return action.payload;
+      }
+      return reducer(state, action);
+  };
+}
+
 // ------------------------------------------------------------------------------
 // enableBatching allows us to dispatch multiple actions
 // without letting the subscribers being warned between the actions
 // only at the end : https://github.com/tshelburne/redux-batched-actions
 // can be very handy when normalizing HTTP response
 /* const metaReducersDev = [storeFreeze, enableBatching]; */
-const metaReducersDev = [storeFreeze, localStorageSyncReducer];
+const metaReducersDev = [storeFreeze, localStorageSyncReducer, stateSetter];
 
 /* const metaReducersProd = [enableBatching];  */
 const metaReducersProd = [];

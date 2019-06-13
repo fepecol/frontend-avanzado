@@ -36,6 +36,9 @@ export class ProfileStudyComponent implements OnChanges {
     }
     this.loadFormInstance(study);
   }
+  submit(){
+    console.log('submit');
+  }
   private loadFormInstance(study: Study) {
     this.rForm = new FormGroup({
       option: new FormControl(study.level, [Validators.required])
