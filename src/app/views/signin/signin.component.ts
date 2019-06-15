@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppStore } from 'src/app/shared/states/store.interface';
-import * as AuthActions from 'src/app/shared/states/auth/actions/auth.actions';
+import { AppStore } from '../../shared/states/store.interface';
+import * as AuthActions from '../../shared/states/auth/actions/auth.actions';
 
 @Component({
   selector: 'app-signin',

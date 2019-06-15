@@ -11,9 +11,9 @@ import {
   Study,
   VocationalStudy,
   CollegeStudy
-} from 'src/app/shared/models/study.model';
-import { MockData } from 'src/app/shared/mock-data';
-import { User } from 'src/app/shared/models/user.model';
+} from '../../../../shared/models/study.model';
+import { MockData } from '../../../../shared/mock-data';
+import { User } from '../../../../shared/models/user.model';
 
 @Component({
   selector: 'app-profile-study',
@@ -35,6 +35,9 @@ export class ProfileStudyComponent implements OnChanges {
       study = changes.study.currentValue;
     }
     this.loadFormInstance(study);
+  }
+  submit(){
+    console.log('submit');
   }
   private loadFormInstance(study: Study) {
     this.rForm = new FormGroup({

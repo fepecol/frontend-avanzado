@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { OffersService } from 'src/app/shared/services/offers.service';
-import { Offer } from 'src/app/shared/models/offer.model';
-import { ProfileService } from 'src/app/shared/services/profile.service';
+import { OffersService } from '../../../shared/services/offers.service';
+import { Offer } from '../../../shared/models/offer.model';
+import { ProfileService } from '../../../shared/services/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/shared/models/user.model';
+import { User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-offers-detail',

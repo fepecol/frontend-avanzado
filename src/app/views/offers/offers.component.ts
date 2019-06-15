@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { OffersService } from 'src/app/shared/services/offers.service';
-import { Offer } from 'src/app/shared/models/offer.model';
-import { ProfileService } from 'src/app/shared/services/profile.service';
+import { OffersService } from '../../shared/services/offers.service';
+import { Offer } from '../../shared/models/offer.model';
+import { ProfileService } from '../../shared/services/profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppStore } from 'src/app/shared/states/store.interface';
+import { AppStore } from '../../shared/states/store.interface';
 import { Observable, of } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
-import { getProfile } from 'src/app/shared/states/user';
-import { getOffers } from 'src/app/shared/states/offers';
+import { User } from '../../shared/models/user.model';
+import { getProfile } from '../../shared/states/user';
+import { getOffers } from '../../shared/states/offers';
 
 @Component({
   selector: 'app-offers',

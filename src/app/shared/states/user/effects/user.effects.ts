@@ -10,8 +10,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ProfileService } from '../../../services/profile.service';
 import { NotificationsService } from '../../../services/notifications.service';
 import { Observable, of } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
-import { TokenResponse } from 'src/app/shared/models/token.interface';
+import { User } from '../../../models/user.model';
+import { TokenResponse } from '../../../models/token.interface';
 
 @Injectable()
 export class UserEffects {

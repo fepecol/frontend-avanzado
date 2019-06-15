@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { User } from 'src/app/shared/models/user.model';
+import { User } from '../../../models/user.model';
 
 export const getProfile = createFeatureSelector<User>('user');
 

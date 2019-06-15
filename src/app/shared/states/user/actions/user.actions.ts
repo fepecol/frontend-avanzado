@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { User } from 'src/app/shared/models/user.model';
+import { User } from '../../../models/user.model';
 
 export const LOAD_USER = '[User] Load User Information';
 export class LoadUser implements Action {

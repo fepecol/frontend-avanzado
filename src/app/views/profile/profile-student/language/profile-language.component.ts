@@ -8,14 +8,14 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MockData } from 'src/app/shared/mock-data';
+import { MockData } from '../../../../shared/mock-data';
 import {
   Language,
   LanguageLevel,
   LanguageName
-} from 'src/app/shared/models/language.model';
-import { dateValidator } from 'src/app/shared/directives/date-validator.directive';
-import { User } from 'src/app/shared/models/user.model';
+} from '../../../../shared/models/language.model';
+import { dateValidator } from '../../../../shared/directives/date-validator.directive';
+import { User } from '../../../../shared/models/user.model';
 
 @Component({
   selector: 'app-profile-language',

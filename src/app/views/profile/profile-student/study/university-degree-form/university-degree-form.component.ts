@@ -8,8 +8,8 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CollegeStudy } from 'src/app/shared/models/study.model';
-import { dateValidator } from 'src/app/shared/directives/date-validator.directive';
+import { CollegeStudy } from '../../../../../shared/models/study.model';
+import { dateValidator } from '../../../../../shared/directives/date-validator.directive';
 
 @Component({
   selector: 'app-university-degree-form',

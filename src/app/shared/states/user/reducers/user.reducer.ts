@@ -1,7 +1,7 @@
 import * as UserActions from '../actions';
 
 import { AppSettings } from '../../../app.settings';
-import { User } from 'src/app/shared/models/user.model';
+import { User } from '../../../models/user.model';
 
 export interface UserState extends User {
   hasFailed: boolean;

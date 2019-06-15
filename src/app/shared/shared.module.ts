@@ -12,13 +12,13 @@ import { AppComfirmComponent } from './services/app-confirm/app-confirm.componen
 import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
 
 // DIRECTIVES
-
+import { FontSizeDirective } from './directives/fontsize.directive';
 // PIPES
 
 // SERVICES
 import { AppConfirmService } from './services/app-confirm/app-confirm.service';
 
-const declarations = [AppComfirmComponent, AdminLayoutComponent];
+const declarations = [AppComfirmComponent, AdminLayoutComponent, FontSizeDirective];
 const exports = [
   CommonModule,
   FormsModule,

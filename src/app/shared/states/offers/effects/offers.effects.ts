@@ -6,8 +6,8 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { Action } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Offer } from 'src/app/shared/models/offer.model';
-import { OffersService } from 'src/app/shared/services/offers.service';
+import { Offer } from '../../../models/offer.model';
+import { OffersService } from '../../../services/offers.service';
 
 @Injectable()
 export class OffersEffects {

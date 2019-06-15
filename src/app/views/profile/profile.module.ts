@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { ProfileStudentComponent } from './profile-student/profile-student.component';
 import { ProfileStudyComponent } from './profile-student/study/profile-study.component';
 import { VocationalFormComponent } from './profile-student/study/vocational-form/vocational-form.component';
