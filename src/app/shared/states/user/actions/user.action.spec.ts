@@ -1,5 +1,5 @@
 import * as fromUser from './user.actions';
-import { User } from '../../../models/user';
+import { User } from '../../../models/user.model';
 
 describe('User Actions', () => {
   describe('LoadUser Actions', () => {

@@ -11,9 +11,9 @@ import {
   Study,
   VocationalStudy,
   CollegeStudy
-} from 'src/app/shared/models/study.model';
-import { MockData } from 'src/app/shared/mock-data';
-import { User } from 'src/app/shared/models/user.model';
+} from '../../../../shared/models/study.model';
+import { MockData } from '../../../../shared/mock-data';
+import { User } from '../../../../shared/models/user.model';
 
 @Component({
   selector: 'app-profile-study',

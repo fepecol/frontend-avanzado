@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Language } from 'src/app/shared/models/language.model';
+import { Language } from '../../../../shared/models/language.model';
 import { Observable } from 'rxjs';
-import { AppStore } from 'src/app/shared/states/store.interface';
+import { AppStore } from '../../../../shared/states/store.interface';
 import { Store } from '@ngrx/store';
 import { map, switchMap } from 'rxjs/operators';
-import { getLanguageByID, getProfile } from 'src/app/shared/states/user';
-import * as UserActions from 'src/app/shared/states/user/actions';
-import { User } from 'src/app/shared/models/user.model';
+import { getLanguageByID, getProfile } from '../../../../shared/states/user';
+import * as UserActions from '../../../../shared/states/user/actions';
+import { User } from '../../../../shared/models/user.model';
 
 @Component({
   selector: 'app-profile-language-wrapper',

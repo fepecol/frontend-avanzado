@@ -1,7 +1,7 @@
 import * as OffersActions from '../actions';
 
 import { AppSettings } from '../../../app.settings';
-import { Offer } from 'src/app/shared/models/offer.model';
+import { Offer } from '../../../models/offer.model';
 
 export type OffersState = Offer[];
 

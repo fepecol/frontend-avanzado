@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AppStore } from 'src/app/shared/states/store.interface';
+import { AppStore } from '../../shared/states/store.interface';
 import { Store } from '@ngrx/store';
-import { getProfile } from 'src/app/shared/states/user';
+import { getProfile } from '../../shared/states/user';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
-import * as UserActions from 'src/app/shared/states/user/actions';
+import { User } from '../../shared/models/user.model';
+import * as UserActions from '../../shared/states/user/actions';
 
 @Component({
   selector: 'app-profile',

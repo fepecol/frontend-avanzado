@@ -8,19 +8,19 @@ import {
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProfileService } from '../../../../shared/services/profile.service';
-import { MockData } from 'src/app/shared/mock-data';
-import { dateValidator } from 'src/app/shared/directives/date-validator.directive';
+import { ProfileService } from '../../../../shared/../shared/services/profile.service';
+import { MockData } from '../../../../shared/mock-data';
+import { dateValidator } from '../../../../shared/directives/date-validator.directive';
 import {
   User,
   DocumentType,
   Municipe,
   Province
-} from 'src/app/shared/models/user.model';
-import { documentNumberValidator } from 'src/app/shared/directives/document-number-validator.directive';
-import { AppStore } from 'src/app/shared/states/store.interface';
+} from '../../../../shared/models/user.model';
+import { documentNumberValidator } from '../../../../shared/directives/document-number-validator.directive';
+import { AppStore } from '../../../../shared/states/store.interface';
 import { Store } from '@ngrx/store';
-import { getProfile } from 'src/app/shared/states/user';
+import { getProfile } from '../../../../shared/states/user';
 import { Observable } from 'rxjs';
 
 @Component({

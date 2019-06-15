@@ -15,9 +15,9 @@ import {
   TitleStudy,
   Grade,
   CollegeStudy
-} from 'src/app/shared/models/study.model';
-import { MockData } from 'src/app/shared/mock-data';
-import { dateValidator } from 'src/app/shared/directives/date-validator.directive';
+} from '../../../../../shared/models/study.model';
+import { MockData } from '../../../../../shared/mock-data';
+import { dateValidator } from '../../../../../shared/directives/date-validator.directive';
 
 @Component({
   selector: 'app-vocational-form',

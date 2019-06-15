@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { Offer } from 'src/app/shared/models/offer.model';
+import { Offer } from '../../../shared/models/offer.model';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/shared/models/user.model';
-import { AppStore } from 'src/app/shared/states/store.interface';
+import { User } from '../../../shared/models/user.model';
+import { AppStore } from '../../../shared/states/store.interface';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getProfile } from 'src/app/shared/states/user';
+import { getProfile } from '../../../shared/states/user';
 import { map, switchMap } from 'rxjs/operators';
-import { getOfferByID } from 'src/app/shared/states/offers';
-import * as UserActions from 'src/app/shared/states/user/actions';
+import { getOfferByID } from '../../../shared/states/offers';
+import * as UserActions from '../../../shared/states/user/actions';
 @Component({
   selector: 'app-offers-detail-wrapper',
   template: `
