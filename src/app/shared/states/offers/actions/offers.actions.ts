@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Offer } from 'src/app/shared/models/offer.model';
+import { Offer } from '../../../models/offer.model';
 
 export const LOAD_OFFERS = '[Offers] Load Offers Information';
 export class LoadOffers implements Action {

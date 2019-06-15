@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { User } from 'src/app/shared/models/user.model';
-import { AppStore } from 'src/app/shared/states/store.interface';
+import { User } from '../../../../shared/models/user.model';
+import { AppStore } from '../../../../shared/states/store.interface';
 import { Store } from '@ngrx/store';
-import { getProfile } from 'src/app/shared/states/user';
+import { getProfile } from '../../../../shared/states/user';
 import { Observable } from 'rxjs';
-import * as UsersActions from 'src/app/shared/states/user/actions';
+import * as UsersActions from '../../../../shared/states/user/actions';
 
 @Component({
   selector: 'app-profile-account-wrapper',

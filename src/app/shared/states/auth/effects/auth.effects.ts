@@ -8,8 +8,8 @@ import * as OffersActions from '../../offers/actions';
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { NotificationsService } from 'src/app/shared/services/notifications.service';
+import { AuthService } from '../../../services/auth.service';
+import { NotificationsService } from '../../../services/notifications.service';
 
 @Injectable()
 export class AuthEffects {

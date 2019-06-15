@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Study } from 'src/app/shared/models/study.model';
+import { Study } from '../../../../shared/models/study.model';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
-import { AppStore } from 'src/app/shared/states/store.interface';
+import { User } from '../../../../shared/models/user.model';
+import { AppStore } from '../../../../shared/states/store.interface';
 import { Store } from '@ngrx/store';
-import { getProfile, getStudyByID } from 'src/app/shared/states/user';
+import { getProfile, getStudyByID } from '../../../../shared/states/user';
 import { map, switchMap } from 'rxjs/operators';
-import * as UserActions from 'src/app/shared/states/user/actions';
+import * as UserActions from '../../../../shared/states/user/actions';
 
 @Component({
   selector: 'app-profile-study-wrapper',
