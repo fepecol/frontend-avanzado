@@ -34,16 +34,17 @@ export class ProfileStudyComponent implements OnChanges {
     if (this.hasChangeStudy(changes.study)) {
       study = changes.study.currentValue;
     }
-    this.loadFormInstance(study);
+    //this.loadFormInstance(study);
+    this.rForm = new FormGroup({option: new FormControl(study.level, [Validators.required])});
   }
   submit(){
     console.log('submit');
   }
-  private loadFormInstance(study: Study) {
+  /*private loadFormInstance(study: Study) {
     this.rForm = new FormGroup({
       option: new FormControl(study.level, [Validators.required])
     });
-  }
+  }*/
   private hasChangeStudy(study) {
     return study && study.currentValue;
   }
