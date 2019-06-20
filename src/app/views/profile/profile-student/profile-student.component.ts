@@ -23,10 +23,11 @@ export class ProfileStudentComponent {
   deleteStudy(studyID: number) {
     const studies = [...this.user.studies];
     const index = studies.findIndex(study => study.uid === studyID);
-    if (index === -1) {
+    this.errorMessage(index,'Error: Study not found');
+    /*if (index === -1) {
       alert('Error: Study not found');
       return;
-    }
+    }*/
     studies.splice(index, 1);
     const user = {
       ...this.user,
@@ -37,15 +38,23 @@ export class ProfileStudentComponent {
   deleteLanguage(languageID: any) {
     const languages = [...this.user.languages];
     const index = languages.findIndex(language => language.uid === languageID);
-    if (index === -1) {
+    this.errorMessage(index,'Error: Language not found');
+    /*if (index === -1) {
       alert('Error: Language not found');
       return;
-    }
+    }*/
     languages.splice(index, 1);
     const user = {
       ...this.user,
       languages
     };
     this.onDeleteLanguage.emit(user);
+  }
+
+  errorMessage(index, msg){
+    if (index === -1) {
+      alert(msg);
+      return;
+    }
   }
 }
